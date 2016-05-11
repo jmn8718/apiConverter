@@ -11,6 +11,7 @@ var converter = require('swagger-to-raml-object');
 var toRAML = require('raml-object-to-raml');
 
 var utils = require('../utils')
+var blueprint2raml = require('../lib/blueprint2raml').blueprint2raml;
 
 var blueprintObj2RamlObj = function(blueprintObj, callback){
   //var err = new Error("Error converting blueprint object to ramlobject");
@@ -66,6 +67,36 @@ router.get('/parser', function(req, res, next) {
   } else {
     res.end('Blueprint File: '+file + ' doesn\'t provided');
   }
+});
+
+router.get('/parser_ast', function(req, res, next) {
+    var file = req.query.file;
+    console.log(file)
+    if(file.length > 0 || file.indexOf('.apib')<0 || file.indexOf('.md')<0){
+        var pathfile = path.join(__dirname, '../../resources/blueprint',file);
+        console.log(pathfile);
+
+        var options = {
+            requireBlueprintName: true,
+            type: 'ast',
+            // generateSourceMap: true
+        }
+        fs.readFile(pathfile, 'utf-8', function(error, content){
+            if(error)
+                next(error)
+            else
+                protagonist.parse(content, options, function(error, data) {
+                    if (error)
+                        next(error)
+                    else{
+                        res.writeHead(200, {"Content-Type": "application/json"});
+                        res.end(JSON.stringify(data,null,2));
+                    }
+                });
+        })
+    } else {
+        res.end('Blueprint File: '+file + ' doesn\'t provided');
+    }
 });
 
 router.get('/aglio', function(req, res, next) {
@@ -145,6 +176,44 @@ router.get('/convert', function(req, res, next){
   }
 });
 
+router.get('/toraml', function(req, res, next) {
+    var file = req.query.file;
+    console.log(file)
+    if(file.length > 0 || file.indexOf('.apib')<0 || file.indexOf('.md')<0){
+        var pathfile = path.join(__dirname, '../../resources/blueprint',file);
+        console.log(pathfile);
+
+        var options = {
+            requireBlueprintName: true,
+            type: 'ast',
+            // generateSourceMap: true
+        }
+        fs.readFile(pathfile, 'utf-8', function(error, content){
+            if(error)
+                next(error)
+            else
+                protagonist.parse(content, options, function(error, data) {
+                    if (error)
+                        next(error)
+                    else{
+                        //console.log(data);
+                        blueprint2raml(data.ast, function(err, ramlObj){
+                            if(err)
+                                next(err)
+                            else {
+                                var str = toRAML(ramlObj);
+                                utils.toFile(pathfile+'.raml',str)
+                                res.writeHead(200, {"Content-Type": "application/json"});
+                                res.end(JSON.stringify(ramlObj,null,2));
+                            }
+                        })
+                    }
+                });
+        })
+    } else {
+        res.end('Blueprint File: '+file + ' doesn\'t provided');
+    }
+});
 router.get('/', function(req, res, next) {
   res.render('blueprint', { title: 'Blueprint' });
 });
