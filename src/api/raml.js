@@ -16,9 +16,8 @@ router.get('/parser', function(req, res, next) {
 
     raml.loadFile(pathfile).then(function(data) {
       //console.log(data)
-      var str = toRAML(data);
-      res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-      res.end(str)
+      res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
+      res.end(JSON.stringify(data,null,2))
     }, function(error) {
       next(error)
     });
@@ -38,7 +37,7 @@ router.get('/raml2html', function(req, res, next) {
       var configWithDefaultTemplates = raml2html.getDefaultConfig();
       raml2html.render(data,configWithDefaultTemplates).then(function(result) {
         //console.log(result)
-        utils.toFile(pathfile+'.html',result);
+        utils.toMinifiedFile(pathfile+'.html',result);
         res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
         res.end(result);
       }, function(error) {
@@ -53,6 +52,25 @@ router.get('/raml2html', function(req, res, next) {
   }
 });
 
+router.get('/toRaml', function(req, res, next) {
+  var file = req.query.file;
+  if(file.length > 0 || file.indexOf('.raml')<0){
+    var pathfile = path.join(__dirname, '../../resources/raml',file);
+    console.log(pathfile);
+
+    raml.loadFile(pathfile).then(function(data) {
+      //console.log(data)
+      var str = toRAML(data);
+      res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+      res.end(str)
+    }, function(error) {
+      next(error)
+    });
+
+  } else {
+    res.end('Raml File: '+file + ' doesn\'t provided');
+  }
+});
 router.get('/', function(req, res, next) {
   res.render('raml', { title: 'Raml' });
 });
