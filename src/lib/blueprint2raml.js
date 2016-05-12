@@ -30,19 +30,39 @@ function _getResources(blueprint) {
     var resources = []
     if(blueprint.resourceGroups !== null && blueprint.resourceGroups.length>0)
         for(var index in blueprint.resourceGroups){
-            if(blueprint.resourceGroups[index].resources.length > 0) {
-                var resourceGroup = blueprint.resourceGroups[index].resources
-                for(var subindex in resourceGroup)
-                    resources.push(_parseResourceGroup(resourceGroup[subindex]))
-            }
+            //if(blueprint.resourceGroups[index].resources.length > 0) {
+            //    var resourceGroup = blueprint.resourceGroups[index].resources
+                resources.push(_parseResourceGroup(blueprint.resourceGroups[index]))
+                //for(var subindex in resourceGroup)
+                //    resources.push(_parseResource(resourceGroup[subindex]))
+            //}
         }
     else
         throw "No resources provided"
     return resources
 }
 
-function _parseResourceGroup(resourceGroup) {
-    console.log('Parsing resource')
+function _parseResourceGroup(resource){
+    var parentResource = {}
+    //console.log(resource)
+    parentResource.displayName = resource.name
+    parentResource.description = resource.description
+    parentResource.resources = []
+
+    for(var index in resource.resources)
+        parentResource.resources.push(_parseResource(resource.resources[index]))
+
+    //for(var index in parentResource.resources)
+    //    console.log(parentResource.resources[index].relativeUri)
+
+    console.log(_parseRelativeUri(parentResource.resources))
+
+    return parentResource
+}
+
+function _parseResource(resourceGroup) {
+    //console.log('Parsing resource')
+    //console.log(resourceGroup)
     var resource = {}
 
     resource.displayName = resourceGroup.name
@@ -52,6 +72,16 @@ function _parseResourceGroup(resourceGroup) {
     resource.resources = []
 
     return resource;
+
+}
+
+function _parseRelativeUri(resources){
+    var uris = []
+    for(var index in resources){
+        uris.push(resources[index].relativeUri)
+    }
+
+    console.log(uris)
 
 }
 
@@ -67,24 +97,33 @@ function _parseActions(actions){
     }
     return parsedActions
 }
+
+function _getProtocols(baseUri){
+    var protocols = []
+    if(baseUri.indexOf('HTTPS'))
+        protocols.push('HTTPS')
+    else if(baseUri.indexOf('HTTP'))
+        protocols.push('HTTP')
+    return protocols;
+}
 exports.blueprint2raml = function (blueprint, callback) {
     console.log('blueprint2raml')
     var ramlObj = {}
     try{
         //DEFAULT
-        ramlObj.version = 'v1';
-        ramlObj.protocols = ['HTTP']
+        ramlObj.version = '1';
         //ramlObj.securitySchemes = []
         //ramlObj.securedBy = []
         //ramlObj.mediaType = "application/json"
         //ramlObj.resourceTypes = []
         //ramlObj.traits = []
-        ramlObj.resources = _getResources(blueprint)
 
         //FROM OBJ
         ramlObj.title = _getApiName(blueprint);
         ramlObj.baseUri = _getBaseUri(blueprint);
         ramlObj.documentation = _getDocumentation(blueprint)
+        ramlObj.protocols = _getProtocols(ramlObj.baseUri)
+        ramlObj.resources = _getResources(blueprint)
     } catch(exception){
         callback(new Error(exception))
     }

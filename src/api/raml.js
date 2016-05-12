@@ -6,7 +6,7 @@ var raml = require('raml-parser');
 var raml2html = require('raml2html');
 var toRAML = require('raml-object-to-raml');
 
-var utils = require('../utils')
+var utils = require('../lib/utils')
 
 router.get('/parser', function(req, res, next) {
   var file = req.query.file;

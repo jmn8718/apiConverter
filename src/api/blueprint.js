@@ -10,7 +10,7 @@ var apib2swagger = require('apib2swagger')
 var converter = require('swagger-to-raml-object');
 var toRAML = require('raml-object-to-raml');
 
-var utils = require('../utils')
+var utils = require('../lib/utils')
 var blueprint2raml = require('../lib/blueprint2raml').blueprint2raml;
 
 var blueprintObj2RamlObj = function(blueprintObj, callback){
