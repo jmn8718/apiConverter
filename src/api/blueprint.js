@@ -12,31 +12,7 @@ var toRAML = require('raml-object-to-raml');
 
 var utils = require('../lib/utils')
 var blueprint2raml = require('../lib/blueprint2raml').blueprint2raml;
-
-var blueprintObj2RamlObj = function(blueprintObj, callback){
-  //var err = new Error("Error converting blueprint object to ramlobject");
-  //callback(err);
-  var ramlObj = {}
-  //DEFAULT
-  ramlObj.version = 'v1';
-  ramlObj.protocols = ['HTTP']
-  //ramlObj.securitySchemes = []
-  //ramlObj.securedBy = []
-  //ramlObj.mediaType = "application/json"
-  //ramlObj.resourceTypes = []
-  //ramlObj.traits = []
-  ramlObj.resources = []
-
-  //FROM OBJ
-  ramlObj.title = blueprintObj.content[0].meta.title;
-  ramlObj.baseUri = blueprintObj.content[0].attributes.meta[1].content.value.content;
-  ramlObj.documentation = [{
-    'title': '',
-    'content': blueprintObj.content[0].content[0].content.trim()
-  }]
-  //ramlObj.resources = [blueprintObj.content[0].content[1]]
-  callback(null, ramlObj);
-}
+var raml2blueprint = require('../lib/raml2blueprint').raml2blueprint;
 
 router.get('/parser', function(req, res, next) {
   var file = req.query.file;
@@ -89,6 +65,7 @@ router.get('/parser_ast', function(req, res, next) {
                     if (error)
                         next(error)
                     else{
+                        utils.toFile(pathfile+'.json',JSON.stringify(data,null,2))
                         res.writeHead(200, {"Content-Type": "application/json"});
                         res.end(JSON.stringify(data,null,2));
                     }
@@ -214,6 +191,27 @@ router.get('/toraml', function(req, res, next) {
         res.end('Blueprint File: '+file + ' doesn\'t provided');
     }
 });
+
+router.get('/raml',function(req, res, next){
+    raml2blueprint({}, function (err, content) {
+        if(err)
+            next(err)
+        else {
+            aglio.renderObj(content, {}, function (err, result, warnings) {
+                if (err)
+                    next(err)
+                else{
+                    //if (warnings)
+                    //console.log(warnings);
+                    //console.log(result);
+                    res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+                    res.end(result);
+                }
+            });
+        }
+    })
+});
+
 router.get('/', function(req, res, next) {
   res.render('blueprint', { title: 'Blueprint' });
 });

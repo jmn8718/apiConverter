@@ -16,6 +16,7 @@ router.get('/parser', function(req, res, next) {
 
     raml.loadFile(pathfile).then(function(data) {
       //console.log(data)
+      utils.toFile(pathfile+'.json',JSON.stringify(data,null,2))
       res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
       res.end(JSON.stringify(data,null,2))
     }, function(error) {
