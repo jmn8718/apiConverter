@@ -13,6 +13,7 @@ var toRAML = require('raml-object-to-raml');
 var utils = require('../lib/utils')
 var blueprint2raml = require('../lib/blueprint2raml').blueprint2raml;
 var raml2blueprint = require('../lib/raml2blueprint').raml2blueprint;
+var apimarket_theme = require('../lib/apimarket-theme')
 
 router.get('/parser', function(req, res, next) {
   var file = req.query.file;
@@ -197,17 +198,16 @@ router.get('/raml',function(req, res, next){
         if(err)
             next(err)
         else {
-            aglio.renderObj(content, {}, function (err, result, warnings) {
-                if (err)
-                    next(err)
-                else{
-                    //if (warnings)
-                    //console.log(warnings);
-                    //console.log(result);
-                    res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-                    res.end(result);
-                }
-            });
+            raml2blueprint('',function(err,blueprint){
+                apimarket_theme.render(blueprint,{},function(err, html){
+                    if(err)
+                        console.log(err)
+                    else{
+                        res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+                        res.end(html);
+                    }
+                })
+            })
         }
     })
 });
