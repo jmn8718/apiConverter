@@ -1,0 +1,106 @@
+$container-min-height: 640px;
+$documentation-width: 1200px;
+
+$header-height: 60px;
+$header-border-bottom-size: 1px;
+
+$sidebar-width: 250px;
+
+/*********** font size displays **********/
+$font-size-display-4: 30px;
+$font-size-display-3: 22px;
+$font-size-display-2: 18px;
+$font-size-display-1: 16px;
+$font-size-body: 14px;
+$font-size-body-line-height: 20px;
+$font-size-important: 14px;
+$font-size-link: 14px;
+$font-size-table-title-1: 16px;
+$font-size-table-title-2: 14px;
+$font-size-table-body: 12px;
+$font-size-menu-level-1: 18px;
+$font-size-menu-level-2: 14px;
+$font-size-bullets-1: 18px;
+$font-size-bullets-2: 14px;
+$font-size-image-subtitle: 12px;
+
+/*********** font size ************/
+$font-size-small: 12px;
+$font-size-document: 14px;
+$font-size-regular: 16px;
+$font-size-regular2: 18px;
+$font-size-normal: 20px;
+$font-size-botton: 22px;
+$font-size-large: 28px;
+$font-size-table-title: 40px;
+$font-size-title: 44px;
+$font-size-title-large: 48px;
+
+/*********** border radius ************/
+$border-radius-normal: 5px;
+
+/*********** media queries sizes ************/
+$break-small: 570px;
+$break-medium: 768px;
+$break-large: 1024px;
+
+/*********** fonts ************/
+
+$font-book-regular: BBVAWebBook-Regular, Helvetica, Arial, sans-serif;
+$font-light-regular: BBVAWebLight-Regular, Helvetica, Arial, sans-serif;
+$font-book-bold: BBVAWebSemibold-Regular, Helvetica, Arial, sans-serif;
+
+/*********** colors ************/
+$white: #FFFFFF;
+$blue1: #B5E5F9;
+$blue2: #89D1F3;
+$blue3: #52BCEC;
+$blue4: #009EE5;
+$blue5: #006EC1;
+$blue6: #094FA4;
+$blue-statistics: #7DB9EF;
+
+$yellow: #fdbd2c;
+$orange: #F6891E;
+
+$dark-green: #93ba3d;
+$green: #9bc641;
+$magenta: #AB1D5C;
+$yellow-light: #FEDB8D;
+$orange-light: #fedb8b;
+$green-light: #cde2a0;
+$yellow-white-light: #F8F1D0;
+
+$black: #000000;
+$grey-blue-dark: #364250;
+$grey-black: #363636;
+$grey-dark: #504F51;
+$grey-blue: #566270;
+$grey: #72767D;
+$grey-blue-light: #A3A9B4;
+$grey-light: #F0F1F7;
+
+/**********************************************/
+$cp: #007aff;
+
+$call-to-action: $green;
+$call-to-action-hover: $dark-green;
+
+$link-hover: $blue5;
+
+$separator-bar: $grey-blue-light;
+
+$cookie-background-color: $yellow-white-light;
+
+$documentation-color-h1: $blue4;
+
+$form-border-color: $grey-blue-light;
+
+
+/************* Borders ******************/
+
+$border-primary-color: $grey-blue-light;
+$border-primary-width: 1px;
+$border-primary-style: solid;
+
+$border-primary: $border-primary-color $border-primary-style $border-primary-width;

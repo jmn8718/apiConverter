@@ -1,0 +1,32 @@
+.api-documentation  #header{
+  width: 100%;
+  height: $header-height;
+  background-color: #364250;
+  position: fixed;
+  display: block;
+  border-bottom: $header-border-bottom-size solid #566270;
+  z-index: 2;
+  text-decoration: none;
+  color: white;
+  top: 0;
+  margin: 0;
+  padding: 0;
+
+  
+  .action-controls{
+    width: calc(50% + 125px);
+    left: 0;
+    display: inline-block;
+    height: 100%;
+
+  }
+
+  .code-language-controls{
+    border-left: 1px solid white;
+    width: calc(50% - 125px);
+    right: 0;
+    display: inline-block;
+    height: 100%;
+  }
+
+}
