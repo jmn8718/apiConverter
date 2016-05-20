@@ -1,0 +1,1 @@
+This service provides statistics of category distributions for a dimension. The service returns the average transaction amount and the number of transactions for each period and category or subcategory group as the output.

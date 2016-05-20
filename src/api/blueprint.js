@@ -117,42 +117,42 @@ router.get('/aglio', function(req, res, next) {
 /*
  https://github.com/kminami/apib2swagger/blob/master/index.js
  */
-router.get('/convert', function(req, res, next){
-  var file = req.query.file;
-  console.log(file)
-  if(file.length > 0 || file.indexOf('.apib')<0 || file.indexOf('.md')<0){
-    var pathfile = path.join(__dirname, '../../resources/blueprint',file);
-    console.log(pathfile);
-
-    fs.readFile(pathfile, 'utf-8', function(error, content){
-      if(error)
-        next(error)
-      else{
-        protagonist.parse(content, function(error, data) {
-          if (error)
-            next(error)
-          else{
-            //console.log(data);
-            blueprintObj2RamlObj(data,function(err, ramlObj){
-              if(err)
-                next(err)
-              else{
-                var str = toRAML(ramlObj);
-                utils.toFile(pathfile+'.raml',str)
-                res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-                res.end(str);
-                //res.writeHead(200, {"Content-Type": "application/json"});
-                //res.end(JSON.stringify(ramlObj,null,2));
-              }
-            })
-          }
-        });
-      }
-    })
-  } else {
-    res.end('Blueprint File: '+file + ' doesn\'t provided');
-  }
-});
+//router.get('/convert', function(req, res, next){
+//  var file = req.query.file;
+//  console.log(file)
+//  if(file.length > 0 || file.indexOf('.apib')<0 || file.indexOf('.md')<0){
+//    var pathfile = path.join(__dirname, '../../resources/blueprint',file);
+//    console.log(pathfile);
+//
+//    fs.readFile(pathfile, 'utf-8', function(error, content){
+//      if(error)
+//        next(error)
+//      else{
+//        protagonist.parse(content, function(error, data) {
+//          if (error)
+//            next(error)
+//          else{
+//            //console.log(data);
+//            blueprintObj2RamlObj(data,function(err, ramlObj){
+//              if(err)
+//                next(err)
+//              else{
+//                var str = toRAML(ramlObj);
+//                utils.toFile(pathfile+'.raml',str)
+//                res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+//                res.end(str);
+//                //res.writeHead(200, {"Content-Type": "application/json"});
+//                //res.end(JSON.stringify(ramlObj,null,2));
+//              }
+//            })
+//          }
+//        });
+//      }
+//    })
+//  } else {
+//    res.end('Blueprint File: '+file + ' doesn\'t provided');
+//  }
+//});
 
 router.get('/toraml', function(req, res, next) {
     var file = req.query.file;

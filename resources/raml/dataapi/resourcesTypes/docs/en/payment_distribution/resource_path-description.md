@@ -1,0 +1,1 @@
+This service provides statistics of transaction amount distributions for a dimension and particular business category. The service returns the average transaction amount and the number of transactions for each period and transaction amount interval as the output.

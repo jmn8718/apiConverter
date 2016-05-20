@@ -1,0 +1,8 @@
+queryParameters:
+  by:
+    required: false
+    displayName: !include docs/en/query_params/by-display_name.md
+    description: !include docs/en/query_params/by-description.md
+    enum: [cards, payments, incomes]
+    example: cards
+    type: string

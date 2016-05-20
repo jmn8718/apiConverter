@@ -1,0 +1,98 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 3,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/payment_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=3"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/payment_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=3"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/payment_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=3&$page_key=201404"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "histogram": [
+          {
+            "amounts": "<=9.99",
+            "txs": 19,
+            "avg": 8.09
+          },
+          {
+            "amounts": "30-39.99",
+            "txs": 22,
+            "avg": 30.97
+          },
+          {
+            "amounts": "80-99.99",
+            "txs": 9,
+            "avg": 86.34
+          },
+          {
+            "amounts": "10-19.99",
+            "txs": 48,
+            "avg": 18.95
+          },
+          {
+            "amounts": "300-499.99",
+            "txs": 2,
+            "avg": 331.8
+          },
+          {
+            "amounts": "20-29.99",
+            "txs": 22,
+            "avg": 22.79
+          },
+          {
+            "amounts": "60-79.99",
+            "txs": 15,
+            "avg": 64.99
+          },
+          {
+            "amounts": "40-49.99",
+            "txs": 10,
+            "avg": 47.16
+          },
+          {
+            "amounts": "50-59.99",
+            "txs": 5,
+            "avg": 59.85
+          },
+          {
+            "amounts": "120-149.99",
+            "txs": 3,
+            "avg": 126.83
+          },
+          {
+            "amounts": "150-199.99",
+            "txs": 3,
+            "avg": 163.48
+          },
+          {
+            "amounts": "100-119.99",
+            "txs": 3,
+            "avg": 105.28
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      }
+    ]
+  }
+}

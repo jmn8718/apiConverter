@@ -1,0 +1,11 @@
+queryParameters:
+  $page_size:
+    displayName: !include docs/en/query_params/page_size-display_name.md
+    description: !include docs/en/query_params/page_size-description.md
+    example: 10
+    type: integer
+  $page_key:
+    displayName: !include docs/en/query_params/page_key-display_name.md
+    description: !include docs/en/query_params/page_key-description.md
+    example: 201403
+    type: string

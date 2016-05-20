@@ -1,0 +1,1 @@
+This service provides statistics of age distributions for a dimension and particular business category. The service returns the average transaction amount and the number of transactions for each period and age group as the output.

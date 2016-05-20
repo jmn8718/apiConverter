@@ -1,0 +1,51 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 4,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/gender_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=4"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/gender_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=4"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/gender_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=4&$page_key=201405"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "histogram": [
+          {
+            "gender": "F",
+            "txs": 91,
+            "avg": 156.2
+          },
+          {
+            "gender": "M",
+            "txs": 70,
+            "avg": 185.13
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      }
+    ]
+  }
+}

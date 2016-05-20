@@ -1,0 +1,40 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201411",
+        "avg": 33.56,
+        "max": 9420,
+        "min": 5.6,
+        "std": 40.44,
+        "mode": 33.21,
+        "peak_txs_day": 4,
+        "valley_txs_day": 1,
+        "peak_txs_hour": 14,
+        "valley_txs_hour": 7,
+        "cards": 1728,
+        "txs": 2601,
+        "merchants": 66
+      },
+      {
+        "date": "201412",
+        "avg": 34.05,
+        "max": 4220,
+        "min": 0.88,
+        "std": 52.76,
+        "mode": 31.77,
+        "peak_txs_day": 6,
+        "valley_txs_day": 2,
+        "peak_txs_hour": 14,
+        "valley_txs_hour": 7,
+        "cards": 1690,
+        "txs": 2652,
+        "merchants": 66
+      }
+    ]
+  }
+}

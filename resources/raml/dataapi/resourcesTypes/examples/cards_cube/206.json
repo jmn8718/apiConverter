@@ -1,0 +1,178 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 5,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/cards_cube?date_min=201401&date_max=201412&group_by=month&$page_size=5"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/cards_cube?date_min=201401&date_max=201412&group_by=month&$page_size=5"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/cards_cube?date_min=201401&date_max=201412&group_by=month&$page_size=5&$page_key=201406"
+      }
+    }
+  },
+  "metadata": {
+    "hash_description": {
+      "ranges": [
+        {
+          "order": "1",
+          "name": "gender",
+          "values": [
+            {
+              "label": "M",
+              "description": "Male"
+            },
+            {
+              "label": "F",
+              "description": "Female"
+            },
+            {
+              "label": "E",
+              "description": "Enterprise"
+            },
+            {
+              "label": "U",
+              "description": "Unknown"
+            }
+          ]
+        },
+        {
+          "order": "2",
+          "name": "age",
+          "values": [
+            {
+              "label": "0",
+              "description": "<=24"
+            },
+            {
+              "label": "1",
+              "description": "25-34"
+            },
+            {
+              "label": "2",
+              "description": "35-44"
+            },
+            {
+              "label": "3",
+              "description": "45-54"
+            },
+            {
+              "label": "4",
+              "description": "55-64"
+            },
+            {
+              "label": "5",
+              "description": ">=65"
+            },
+            {
+              "label": "U",
+              "description": "Unknown"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "cube": [
+          {
+            "hash": "F#0",
+            "txs": 3,
+            "avg": 157.72,
+            "cards": 3
+          },
+          {
+            "hash": "F#1",
+            "txs": 16,
+            "avg": 192.48,
+            "cards": 16
+          },
+          {
+            "hash": "F#2",
+            "txs": 29,
+            "avg": 196.44,
+            "cards": 23
+          },
+          {
+            "hash": "F#3",
+            "txs": 27,
+            "avg": 126.12,
+            "cards": 20
+          },
+          {
+            "hash": "F#4",
+            "txs": 8,
+            "avg": 76.4,
+            "cards": 7
+          },
+          {
+            "hash": "F#5",
+            "txs": 8,
+            "avg": 118.56,
+            "cards": 8
+          },
+          {
+            "hash": "M#0",
+            "txs": 5,
+            "avg": 58.68,
+            "cards": 5
+          },
+          {
+            "hash": "M#1",
+            "txs": 14,
+            "avg": 204.16,
+            "cards": 13
+          },
+          {
+            "hash": "M#2",
+            "txs": 27,
+            "avg": 200.24,
+            "cards": 21
+          },
+          {
+            "hash": "M#3",
+            "txs": 10,
+            "avg": 212.08,
+            "cards": 10
+          },
+          {
+            "hash": "M#4",
+            "txs": 7,
+            "avg": 136.64,
+            "cards": 7
+          },
+          {
+            "hash": "M#5",
+            "txs": 7,
+            "avg": 189.08,
+            "cards": 7
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      },
+      {
+        "date": "201405"
+      }
+    ]
+  }
+}

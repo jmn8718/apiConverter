@@ -1,0 +1,33 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "data": {
+    "stats": [
+      {
+        "size": "18",
+        "categories": [
+          {
+            "code": "es_auto",
+            "description": "Auto",
+            "subcategories": [
+              {
+                "code": "es_wash",
+                "description": "Carwash"
+              },
+              {
+                "code": "es_cartest",
+                "description": "Vehicle roadworthiness"
+              },
+              {
+                "code": "es_car",
+                "description": "Dealers, garage and spare parts"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

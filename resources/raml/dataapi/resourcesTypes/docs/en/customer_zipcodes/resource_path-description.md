@@ -1,0 +1,1 @@
+This service returns, for a date range and a dimension, the Top 100 zipcodes of customers home location sorted by number of transactions, number of different cards or total expenditure. It serves as a descriptor of business influence for that dimension.

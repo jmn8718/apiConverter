@@ -45,8 +45,8 @@ function _getResources(blueprint) {
 function _parseResourceGroup(resource){
     var parentResource = {}
     //console.log(resource)
-    parentResource.displayName = resource.name
-    parentResource.description = resource.description
+    //parentResource.displayName = resource.name
+    //parentResource.description = resource.description
     parentResource.resources = []
 
     for(var index in resource.resources)
@@ -89,13 +89,67 @@ function _parseActions(actions){
     var parsedActions = []
     for(var index in actions){
         var action = {}
+        console.log(actions[index])
         action.method = actions[index].method
         action.displayName = actions[index].name
         action.description = actions[index].description
-        action.responses = []
+        action.body = _parseRequest(actions[index])
+        action.responses = _parseResponses(actions[index])
         parsedActions.push(action)
     }
+    console.log('parsedActions',parsedActions)
     return parsedActions
+}
+
+function _parseRequest(action){
+    var resquest = {}
+    var actionRequest = action.examples[0]['requests'] || []
+    if(actionRequest.length === 0)
+        return undefined
+    else{
+        var actionRequestData = actionRequest[0]
+        var type = ''
+        if(actionRequestData['headers']!==undefined && actionRequestData['headers'].length > 0)
+            type = actionRequestData['headers'][0]['value']
+        var example = actionRequestData['body']
+        resquest[type] = {
+            'example':example
+        }
+    }
+    return resquest;
+}
+
+function _parseResponses(action){
+    var responses = {}
+    var actionResponses = action.examples[0]['responses']
+    if(actionResponses.length === 0)
+        return undefined;
+    else{
+        for(var index in actionResponses){
+            var code = actionResponses[index]['name']
+            var description = actionResponses[index]['description']
+            var type = ''
+            if(actionResponses[index]['headers'].length > 0)
+                type = actionResponses[index]['headers'][0]['value']
+            var example = actionResponses[index]['body']
+            if(example===undefined)
+                example = ""
+            var schema = actionResponses[index]['schema']
+            if(schema===undefined)
+                schema = ""
+            responses[code]= {}
+            responses[code]['description']= description
+            if(type.length > 0){
+                responses[code]['body'] = {}
+                responses[code]['body'][type] = {}
+                if(example.length > 0)
+                    responses[code]['body'][type]['example'] = example
+                if(schema.length > 0)
+                    responses[code]['body'][type]['schema'] = schema
+            }
+        }
+    }
+    return responses;
 }
 
 function _getProtocols(baseUri){
@@ -106,6 +160,7 @@ function _getProtocols(baseUri){
         protocols.push('HTTP')
     return protocols;
 }
+
 exports.blueprint2raml = function (blueprint, callback) {
     console.log('blueprint2raml')
     var ramlObj = {}

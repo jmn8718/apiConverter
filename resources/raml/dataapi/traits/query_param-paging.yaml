@@ -1,0 +1,11 @@
+queryParameters:
+    $page:
+      displayName: !include docs/en/query_params/page-display_name.md
+      description: !include docs/en/query_params/page-description.md
+      example: 2
+      type: integer
+    $page_size:
+      displayName: !include docs/en/query_params/page_size-display_name.md
+      description: !include docs/en/query_params/page_size-description.md
+      example: 10
+      type: integer

@@ -1,0 +1,135 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404",
+        "days": [
+          {
+            "day": "Monday",
+            "avg": 179.13,
+            "max": 286.0,
+            "min": 84.0,
+            "std": 75.48,
+            "mode": 230.2,
+            "cards": 8,
+            "txs": 8,
+            "merchants": 3
+          },
+          {
+            "day": "Tuesday",
+            "avg": 61.98,
+            "max": 100.0,
+            "min": 31.7,
+            "std": 28.41,
+            "mode": 42.98,
+            "cards": 3,
+            "txs": 3,
+            "merchants": 3
+          },
+          {
+            "day": "Wednesday",
+            "avg": 95.85,
+            "max": 187.0,
+            "min": 9.4,
+            "std": 65.57,
+            "mode": 65.47,
+            "cards": 4,
+            "txs": 4,
+            "merchants": 4
+          },
+          {
+            "day": "Friday",
+            "avg": 63.83,
+            "max": 100.0,
+            "min": 32.0,
+            "std": 27.93,
+            "mode": 45.75,
+            "cards": 3,
+            "txs": 3,
+            "merchants": 3
+          },
+          {
+            "day": "Saturday",
+            "avg": 62.62,
+            "max": 126.9,
+            "min": 18.15,
+            "std": 36.46,
+            "mode": 46.55,
+            "cards": 5,
+            "txs": 5,
+            "merchants": 3
+          },
+          {
+            "day": "Sunday",
+            "avg": 172.25,
+            "max": 276.0,
+            "min": 53.0,
+            "std": 79.93,
+            "mode": 212.0,
+            "cards": 4,
+            "txs": 4,
+            "merchants": 4
+          }
+        ]
+      },
+      {
+        "date": "201405",
+        "days": [
+          {
+            "day": "Tuesday",
+            "avg": 145.52,
+            "max": 268.0,
+            "min": 40.0,
+            "std": 93.85,
+            "mode": 84.28,
+            "cards": 3,
+            "txs": 3,
+            "merchants": 3
+          },
+          {
+            "day": "Wednesday",
+            "avg": 114.64,
+            "max": 221.0,
+            "min": 43.35,
+            "std": 66.32,
+            "mode": 79.18,
+            "cards": 4,
+            "txs": 4,
+            "merchants": 3
+          },
+          {
+            "day": "Sunday",
+            "avg": 186.49,
+            "max": 516.67,
+            "min": 75.0,
+            "std": 120.75,
+            "mode": 153.47,
+            "cards": 11,
+            "txs": 11,
+            "merchants": 6,
+            "hours": [
+              {
+                "hour": "09",
+                "avg": 236.65,
+                "max": 516.67,
+                "min": 105.45,
+                "std": 136.43,
+                "mode": 180.65,
+                "cards": 6,
+                "txs": 6,
+                "merchants": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

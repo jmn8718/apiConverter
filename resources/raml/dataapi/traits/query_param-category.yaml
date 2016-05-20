@@ -1,0 +1,7 @@
+queryParameters:
+  category:
+    required: false
+    displayName: !include docs/en/query_params/category-display_name.md
+    description: !include docs/en/query_params/category-description.md
+    example: es_home
+    type: string

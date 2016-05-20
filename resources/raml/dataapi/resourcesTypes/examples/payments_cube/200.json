@@ -1,0 +1,175 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "metadata": {
+    "hash_description": {
+      "ranges": [
+        {
+          "order": "1",
+          "name": "gender",
+          "values": [
+            {
+              "label": "M",
+              "description": "Male"
+            },
+            {
+              "label": "F",
+              "description": "Female"
+            },
+            {
+              "label": "E",
+              "description": "Enterprise"
+            },
+            {
+              "label": "U",
+              "description": "Unknown"
+            }
+          ]
+        },
+        {
+          "order": "2",
+          "name": "age",
+          "values": [
+            {
+              "label": "0",
+              "description": "<=24"
+            },
+            {
+              "label": "1",
+              "description": "25-34"
+            },
+            {
+              "label": "2",
+              "description": "35-44"
+            },
+            {
+              "label": "3",
+              "description": "45-54"
+            },
+            {
+              "label": "4",
+              "description": "55-64"
+            },
+            {
+              "label": "5",
+              "description": ">=65"
+            },
+            {
+              "label": "U",
+              "description": "Unknown"
+            }
+          ]
+        },
+        {
+          "order": "3",
+          "name": "amount",
+          "values": [
+            {
+              "label": "0",
+              "description": "<=9.99"
+            },
+            {
+              "label": "1",
+              "description": "10-19.99"
+            },
+            {
+              "label": "2",
+              "description": "20-29.99"
+            },
+            {
+              "label": "3",
+              "description": "30-39.99"
+            },
+            {
+              "label": "4",
+              "description": "40-49.99"
+            },
+            {
+              "label": "5",
+              "description": "50-59.99"
+            },
+            {
+              "label": "6",
+              "description": "60-79.99"
+            },
+            {
+              "label": "7",
+              "description": "80-99.99"
+            },
+            {
+              "label": "8",
+              "description": "100-119.99"
+            },
+            {
+              "label": "9",
+              "description": "120-149.99"
+            },
+            {
+              "label": "10",
+              "description": "150-199.99"
+            },
+            {
+              "label": "11",
+              "description": "200-299.99"
+            },
+            {
+              "label": "12",
+              "description": "300-499.99"
+            },
+            {
+              "label": "13",
+              "description": "500-999.99"
+            },
+            {
+              "label": "14",
+              "description": ">=1000"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "cube": [
+          {
+            "hash": "F#0#0",
+            "txs": 1,
+            "avg": 17.4
+          },
+          {
+            "hash": "F#0#3",
+            "txs": 1,
+            "avg": 36.3
+          },
+          {
+            "hash": "M#5#5",
+            "txs": 1,
+            "avg": 52.8
+          },
+          {
+            "hash": "M#5#6",
+            "txs": 1,
+            "avg": 62.07
+          }
+        ]
+      },
+      {
+        "date": "201411"
+      },
+      {
+        "date": "201412"
+      }
+    ]
+  }
+}

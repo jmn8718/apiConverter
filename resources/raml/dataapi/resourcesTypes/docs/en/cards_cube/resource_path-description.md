@@ -1,0 +1,1 @@
+This service provides statistics of consumption for a dimension and particular business category, subdivided by gender and age segments. The service provides the average transaction amount, the number of transactions and the number of different cards for each period and segment as the output.

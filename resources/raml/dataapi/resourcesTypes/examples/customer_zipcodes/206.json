@@ -1,0 +1,86 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 3,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/customer_zipcodes?date_min=201401&date_max=201412&group_by=month&by=payments&$page_size=3"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/customer_zipcodes?date_min=201401&date_max=201412&group_by=month&by=payments&$page_size=3"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/customer_zipcodes?date_min=201401&date_max=201412&group_by=month&by=payments&$page_size=3&$page_key=201404"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 18,
+        "cards": 128,
+        "txs": 148,
+        "zipcodes": [
+          {
+            "label": "28913",
+            "cards": 25,
+            "txs": 33,
+            "incomes": 9113.72
+          },
+          {
+            "label": "28918",
+            "cards": 18,
+            "txs": 20,
+            "incomes": 15026.2
+          },
+          {
+            "label": "28915",
+            "cards": 11,
+            "txs": 13,
+            "incomes": 10092.6
+          },
+          {
+            "label": "28914",
+            "cards": 7,
+            "txs": 9,
+            "incomes": 3013.36
+          },
+          {
+            "label": "28912",
+            "cards": 8,
+            "txs": 8,
+            "incomes": 2808.47
+          },
+          {
+            "label": "28919",
+            "cards": 4,
+            "txs": 6,
+            "incomes": 509.67
+          },
+          {
+            "label": "28917",
+            "cards": 4,
+            "txs": 4,
+            "incomes": 3567.83
+          },
+          {
+            "label": "28925",
+            "cards": 3,
+            "txs": 3,
+            "incomes": 1597.33
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      }
+    ]
+  }
+}

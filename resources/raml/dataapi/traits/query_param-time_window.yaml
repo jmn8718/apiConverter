@@ -1,0 +1,8 @@
+queryParameters:
+  time_window:
+    required: false
+    displayName: !include docs/en/query_params/time_window-display_name.md
+    description: !include docs/en/query_params/time_window-description.md
+    example: 6
+    maxLength: 1
+    type: string

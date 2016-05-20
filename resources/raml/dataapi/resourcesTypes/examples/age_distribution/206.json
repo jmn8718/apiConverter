@@ -1,0 +1,71 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 4,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/age_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=4"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/age_distribution?date_min=201401&date_max=201405&group_by=month&country=es&$page_size=4"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/age_distribution?date_min=201401&date_max=201405&group_by=month&$page_size=4&$page_key=201405"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "histogram": [
+          {
+            "age": "<=24",
+            "txs": 8,
+            "avg": 95.83
+          },
+          {
+            "age": "25-34",
+            "txs": 30,
+            "avg": 197.92
+          },
+          {
+            "age": "35-44",
+            "txs": 56,
+            "avg": 198.27
+          },
+          {
+            "age": "45-54",
+            "txs": 37,
+            "avg": 149.35
+          },
+          {
+            "age": "55-64",
+            "txs": 15,
+            "avg": 104.52
+          },
+          {
+            "age": ">=65",
+            "txs": 15,
+            "avg": 151.48
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      }
+    ]
+  }
+}

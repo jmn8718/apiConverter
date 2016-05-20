@@ -1,0 +1,8 @@
+queryParameters:
+  group_by:
+    required: true
+    displayName: !include docs/en/query_params/group_by-display_name.md
+    description: !include docs/en/query_params/group_by-description.md
+    example: month
+    enum: [day, week, month]
+    type: string

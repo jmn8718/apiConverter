@@ -1,0 +1,8 @@
+headers:
+  Accept-Language:
+    required: false
+    description: !include docs/en/headers/accept_language-description.md
+    enum: ["es","en"]
+    example: es
+    default: en
+    type: string

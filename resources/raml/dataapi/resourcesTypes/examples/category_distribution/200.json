@@ -1,0 +1,104 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 20,
+        "cards": 122,
+        "txs": 153,
+        "avg": 58.88,
+        "histogram": [
+          {
+            "label": "es_health",
+            "txs": 75,
+            "avg": 532.07
+          },
+          {
+            "label": "es_food",
+            "txs": 33,
+            "avg": 177.59
+          },
+          {
+            "label": "es_barsandrestaurants",
+            "txs": 1,
+            "avg": 488.6
+          },
+          {
+            "label": "es_wellnessandbeauty",
+            "txs": 1,
+            "avg": 308
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      },
+      {
+        "date": "201405"
+      },
+      {
+        "date": "201406"
+      },
+      {
+        "date": "201407"
+      },
+      {
+        "date": "201408",
+        "merchants": 18,
+        "cards": 96,
+        "txs": 104,
+        "avg": 49.88,
+        "histogram": [
+          {
+            "label": "es_health",
+            "txs": 38,
+            "avg": 322.49
+          },
+          {
+            "label": "es_wellnessandbeauty",
+            "txs": 1,
+            "avg": 489.65
+          }
+        ]
+      },
+      {
+        "date": "201409"
+      },
+      {
+        "date": "201410",
+        "merchants": 18,
+        "cards": 118,
+        "txs": 141,
+        "avg": 47.3,
+        "histogram": [
+          {
+            "label": "es_health",
+            "txs": 68,
+            "avg": 249.72
+          },
+          {
+            "label": "es_barsandrestaurants",
+            "txs": 1,
+            "avg": 80
+          }
+        ]
+      },
+      {
+        "date": "201411"
+      },
+      {
+        "date": "201412"
+      }
+    ]
+  }
+}

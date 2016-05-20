@@ -1,0 +1,40 @@
+{
+  "result": {
+    "code": 200,
+    "info": "OK"
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 19,
+        "cards": 139,
+        "txs": 161,
+        "histogram": [
+          {
+            "gender": "F",
+            "txs": 91,
+            "avg": 156.2
+          },
+          {
+            "gender": "M",
+            "txs": 70,
+            "avg": 185.13
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      },
+      {
+        "date": "201405"
+      }
+    ]
+  }
+}

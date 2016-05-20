@@ -1,0 +1,69 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 3,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/basic_stats?date_min=201401&date_max=201412&group_by=month&$page_size=3"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/basic_stats?date_min=201401&date_max=201412&group_by=month&$page_size=3"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/basic_stats?date_min=201401&date_max=201412&group_by=month&$page_size=3&$page_key=201404"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401",
+        "avg": 35.49,
+        "max": 7734.3,
+        "min": 4.5,
+        "std": 49.76,
+        "mode": 35.04,
+        "peak_txs_day": 3,
+        "valley_txs_day": 5,
+        "peak_txs_hour": 14,
+        "valley_txs_hour": 3,
+        "cards": 1756,
+        "txs": 2792,
+        "merchants": 62
+      },
+      {
+        "date": "201402",
+        "avg": 31.32,
+        "max": 3468,
+        "min": 5.1,
+        "std": 33.27,
+        "mode": 31.03,
+        "peak_txs_day": 6,
+        "valley_txs_day": 4,
+        "peak_txs_hour": 14,
+        "valley_txs_hour": 3,
+        "cards": 1268,
+        "txs": 1844,
+        "merchants": 59
+      },
+      {
+        "date": "201403",
+        "avg": 33.37,
+        "max": 5960,
+        "min": 4.56,
+        "std": 41.59,
+        "mode": 31.13,
+        "peak_txs_day": 6,
+        "valley_txs_day": 5,
+        "peak_txs_hour": 13,
+        "valley_txs_hour": 13,
+        "cards": 1825,
+        "txs": 2863,
+        "merchants": 66
+      }
+    ]
+  }
+}

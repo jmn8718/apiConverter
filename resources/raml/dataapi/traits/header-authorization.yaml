@@ -1,0 +1,5 @@
+headers:
+  Authorization:
+    description: !include docs/en/headers/authorization-description.md
+    required: true
+    example: jwt eyJhbGciAcjaW

@@ -1,0 +1,6 @@
+headers:
+  Accept:
+    description: !include docs/en/headers/accept-description.md
+    enum: ["application/json"]
+    default: application/json
+    example: application/json

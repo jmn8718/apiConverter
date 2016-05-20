@@ -1,0 +1,6 @@
+headers:
+  Content-Type:
+    description: !include docs/en/headers/content_type-description.md
+    enum: ["application/json"]
+    example: application/json
+    default: application/json

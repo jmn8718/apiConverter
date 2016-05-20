@@ -1,0 +1,10 @@
+#%RAML 0.8 ResourceType
+get:
+  is: [language, errors, authorization, accept]
+  description: !include docs/en/merchants_categories/get-description.md
+  responses:
+    200:
+      description: !include docs/en/merchants_categories/200.md
+      body:
+        application/json:
+          example: !include examples/merchants_categories/200.json

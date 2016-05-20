@@ -1,0 +1,3 @@
+responses:
+  204:
+    description: !include docs/en/responses/204-description.md

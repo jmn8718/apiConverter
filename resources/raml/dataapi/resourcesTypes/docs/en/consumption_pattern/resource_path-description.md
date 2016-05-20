@@ -1,0 +1,1 @@
+This service provides, for an specific dimension, a pattern for the typical consumption by day of week and hour of the day. For each one of the time units in the specified period (only group_by=month), statistics of consumption per hour of day and day of the week are provided in the response.

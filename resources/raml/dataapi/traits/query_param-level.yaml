@@ -1,0 +1,8 @@
+queryParameters:
+  level:
+    required: false
+    displayName: !include docs/en/query_params/level-display_name.md
+    description: !include docs/en/query_params/level-description.md
+    enum: [category, subcategory]
+    example: category
+    default: category

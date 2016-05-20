@@ -1,0 +1,48 @@
+responses:
+  400:
+    description: !include docs/en/responses/400-description.md
+    body:
+      application/json:
+        example: !include examples/responses/400.json
+
+  401:
+    description: !include docs/en/responses/401-description.md
+    body:
+      application/json:
+        example: !include examples/responses/401.json
+
+  403:
+    description: !include docs/en/responses/403-description.md
+    body:
+      application/json:
+        example: !include examples/responses/403.json
+
+  404:
+    description: !include docs/en/responses/404-description.md
+    body:
+      application/json:
+        example: !include examples/responses/404.json
+
+  429:
+    description: !include docs/en/responses/429-description.md
+    body:
+      text/plain:
+        example: !include examples/responses/429.md
+
+  500:
+    description: !include docs/en/responses/500-description.md
+    body:
+      application/json:
+        example: !include examples/responses/500.json
+
+  503:
+    description: !include docs/en/responses/503-description.md
+    body:
+      application/json:
+        example: !include examples/responses/503.json
+
+  504:
+    description: !include docs/en/responses/504-description.md
+    body:
+      text/plain:
+        example: !include examples/responses/504.md

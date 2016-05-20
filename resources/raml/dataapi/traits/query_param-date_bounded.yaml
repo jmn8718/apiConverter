@@ -1,0 +1,20 @@
+queryParameters:
+  date_min:
+    required: true
+    displayName: !include docs/en/query_params/date_min-display_name.md
+    description: !include docs/en/query_params/date_min-description.md
+    pattern: (^(2[0-9]{3})$)|(^(2[0-9]{3})([0-4][1-9]|5[0-3])$)|(^(2[0-9]{3})((0[13578]|1[02])(0[1-9]|[1-2][0-9]|3[0-1])|(0[469]|11)(0[1-9]|[1-2][0-9]|30)|(02)(0[1-9]|[1-2][0-9]))$)
+    example: 20140101
+    default: 20140101
+    maxLength: 8
+    type: string
+  date_max:
+    required: true
+    displayName: !include docs/en/query_params/date_max-display_name.md
+    description: !include docs/en/query_params/date_max-description.md
+    pattern: (^(2[0-9]{3})$)|(^(2[0-9]{3})([0-4][1-9]|5[0-3])$)|(^(2[0-9]{3})((0[13578]|1[02])(0[1-9]|[1-2][0-9]|3[0-1])|(0[469]|11)(0[1-9]|[1-2][0-9]|30)|(02)(0[1-9]|[1-2][0-9]))$)
+    example: 20140331
+    default: 20140331
+    maxLength: 8
+    type: string
+

@@ -1,0 +1,1 @@
+Latitude of the tile to be retrieved. LATITUDE is rounded to the third significant digit, but the third significant digit will be rounded to 0 or 5. For example 40.336 to 40.335, 40.311 to 40.310, etc. 

@@ -1,0 +1,1 @@
+Longitude of the tile to be retrieved. LONGITUDE is rounded to the third significant digit, but the third significant digit will be rounded to 0 or 5. For example -3.766 to 3.765, -3.769 to -3.770, etc. 

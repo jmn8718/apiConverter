@@ -1,0 +1,205 @@
+#%RAML 0.8
+---
+title: paystats
+version: 2
+protocols: [HTTP]
+mediaType: application/json
+baseUri: http://internal-apidatos-pro-v2-2054799103.eu-west-1.elb.amazonaws.com
+
+documentation:
+  # Description Paystats
+  - title:    !include docs/en/paystats/description-title.md
+    content:  !include docs/en/paystats/description-content.md
+  # Authentication Paystats
+  - title:    !include docs/en/paystats/authentication-title.md
+    content:  !include docs/en/paystats/authentication-content.md
+  # Description Sandbox
+  - title:    !include docs/en/paystats/sandbox-title.md
+    content:  !include docs/en/paystats/sandbox-content.md
+  # Description Academic
+  - title:    !include docs/en/paystats/academic-title.md
+    content:  !include docs/en/paystats/academic-content.md
+  # Filters
+  - title:    !include docs/en/commons/filters-title.md
+    content:  !include docs/en/commons/filters-content.md
+  # Info
+  - title:    !include docs/en/dimensions/info/documentation-title.md
+    content:  !include docs/en/dimensions/info/documentation-content.md
+  # Tiles
+  - title:    !include docs/en/dimensions/tiles/documentation-title.md
+    content:  !include docs/en/dimensions/tiles/documentation-content.md
+  # Zipcodes
+  - title:    !include docs/en/dimensions/zipcodes/documentation-title.md
+    content:  !include docs/en/dimensions/zipcodes/documentation-content.md
+
+resourceTypes:
+  - basic_stats:            !include resourcesTypes/basic_stats.yaml
+  - merchants_categories:   !include resourcesTypes/merchants_categories.yaml
+  - cards_cube:             !include resourcesTypes/cards_cube.yaml
+  - payments_cube:          !include resourcesTypes/payments_cube.yaml
+  - consumption_pattern:    !include resourcesTypes/consumption_pattern.yaml
+  - customer_zipcodes:      !include resourcesTypes/customer_zipcodes.yaml
+  - category_distribution:  !include resourcesTypes/category_distribution.yaml
+  - gender_distribution:    !include resourcesTypes/gender_distribution.yaml
+  - age_distribution:       !include resourcesTypes/age_distribution.yaml
+  - payment_distribution:   !include resourcesTypes/payment_distribution.yaml
+
+traits:
+  # Headers
+  - authorization:    !include traits/header-authorization.yaml
+  - language:         !include traits/header-accept_language.yaml
+  - accept:           !include traits/header-accept.yaml
+  # Responses
+  - errors:           !include traits/response-errors.yaml
+  # Query Params
+  - paged:            !include traits/query_param-paging.yaml
+  - paged_by_key:     !include traits/query_param-paging_by_key.yaml
+  - date_bounded:     !include traits/query_param-date_bounded.yaml
+  - group_by:         !include traits/query_param-group_by.yaml
+  - group_by_month:   !include traits/query_param-group_by_month.yaml
+  - category:         !include traits/query_param-category.yaml
+  - level:            !include traits/query_param-level.yaml
+  - time_window:      !include traits/query_param-time_window.yaml
+  - by:               !include traits/query_param-by.yaml
+
+
+#===============================================================
+# INFO
+#===============================================================
+/info:
+    displayName: !include docs/en/dimensions/info/resource_path-display_name.md
+    description: !include docs/en/dimensions/info/resource_path-description.md
+    /merchants_categories:
+      type: merchants_categories
+      displayName: !include resourcesTypes/docs/en/merchants_categories/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/merchants_categories/resource_path-description.md
+
+
+#===============================================================
+# TILES
+#===============================================================
+/tiles:
+  displayName: !include docs/en/dimensions/tiles/resource_path-display_name.md
+  description: !include docs/en/dimensions/tiles/resource_path-description.md
+  /{latitude}/{longitude}:
+    description: !include docs/en/dimensions/tiles/resource_value-description.md
+    uriParameters:
+      latitude:
+        required: true
+        displayName: !include docs/en/dimensions/tiles/uri_param-latitude-display_name.md
+        description: !include docs/en/dimensions/tiles/uri_param-latitude-description.md
+        example: 40.475
+        type: integer
+      longitude:
+        required: true
+        displayName: !include docs/en/dimensions/tiles/uri_param-longitude-display_name.md
+        description: !include docs/en/dimensions/tiles/uri_param-longitude-description.md
+        example: -3.765
+        type: integer
+
+    /basic_stats:
+      type: basic_stats
+      displayName: !include resourcesTypes/docs/en/basic_stats/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/basic_stats/resource_path-description.md
+
+    /customer_zipcodes:
+      type: customer_zipcodes
+      displayName: !include resourcesTypes/docs/en/customer_zipcodes/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/customer_zipcodes/resource_path-description.md
+
+    /cards_cube:
+      type: cards_cube
+      description: !include resourcesTypes/docs/en/cards_cube/resource_path-description.md
+      displayName: !include resourcesTypes/docs/en/cards_cube/resource_path-display_name.md
+
+    /payments_cube:
+      type: payments_cube
+      displayName: !include resourcesTypes/docs/en/payments_cube/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/payments_cube/resource_path-description.md
+
+    /payment_distribution:
+      type: payment_distribution
+      displayName: !include resourcesTypes/docs/en/payment_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/payment_distribution/resource_path-description.md
+
+    /age_distribution:
+      type: age_distribution
+      displayName: !include resourcesTypes/docs/en/age_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/age_distribution/resource_path-description.md
+
+    /gender_distribution:
+      type: gender_distribution
+      displayName: !include resourcesTypes/docs/en/gender_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/gender_distribution/resource_path-description.md
+
+    /category_distribution:
+      type: category_distribution
+      displayName: !include resourcesTypes/docs/en/category_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/category_distribution/resource_path-description.md
+
+    /consumption_pattern:
+      type: consumption_pattern
+      displayName: !include resourcesTypes/docs/en/consumption_pattern/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/consumption_pattern/resource_path-description.md
+
+#===============================================================
+# ZIPCODES
+#===============================================================
+/zipcodes:
+  displayName: !include docs/en/dimensions/zipcodes/resource_path-display_name.md
+  description: !include docs/en/dimensions/zipcodes/resource_path-description.md
+  /{zipcode}:
+    description: !include docs/en/dimensions/zipcodes/resource_value-description.md
+    uriParameters:
+      zipcode:
+        required: true
+        displayName: !include docs/en/dimensions/zipcodes/uri_param-zipcode-display_name.md
+        description: !include docs/en/dimensions/zipcodes/uri_param-zipcode-description.md
+        example: 28002
+        default: 28002
+        type: string
+
+    /basic_stats:
+      type: basic_stats
+      displayName: !include resourcesTypes/docs/en/basic_stats/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/basic_stats/resource_path-description.md
+
+    /customer_zipcodes:
+      type: customer_zipcodes
+      displayName: !include resourcesTypes/docs/en/customer_zipcodes/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/customer_zipcodes/resource_path-description.md
+
+    /cards_cube:
+      type: cards_cube
+      displayName: !include resourcesTypes/docs/en/cards_cube/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/cards_cube/resource_path-description.md
+
+    /payments_cube:
+      type: payments_cube
+      displayName: !include resourcesTypes/docs/en/payments_cube/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/payments_cube/resource_path-description.md
+
+    /payment_distribution:
+      type: payment_distribution
+      displayName: !include resourcesTypes/docs/en/payment_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/payment_distribution/resource_path-description.md
+
+    /age_distribution:
+      type: age_distribution
+      displayName: !include resourcesTypes/docs/en/age_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/age_distribution/resource_path-description.md
+
+    /gender_distribution:
+      type: gender_distribution
+      displayName: !include resourcesTypes/docs/en/gender_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/gender_distribution/resource_path-description.md
+
+    /category_distribution:
+      type: category_distribution
+      displayName: !include resourcesTypes/docs/en/category_distribution/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/category_distribution/resource_path-description.md
+
+    /consumption_pattern:
+      type: consumption_pattern
+      displayName: !include resourcesTypes/docs/en/consumption_pattern/resource_path-display_name.md
+      description: !include resourcesTypes/docs/en/consumption_pattern/resource_path-description.md

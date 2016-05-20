@@ -1,0 +1,98 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 2,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/consumption_pattern?date_min=201403&date_max=201412&group_by=month&category=es_hotelservices&$page_size=2"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/consumption_pattern?date_min=201403&date_max=201412&group_by=month&category=es_hotelservices&$page_size=2"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/consumption_pattern?date_min=201403&date_max=201412&group_by=month&category=es_hotelservices&$page_size=2&$page_key=201405"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404",
+        "days": [
+          {
+            "day": "Monday",
+            "avg": 179.13,
+            "max": 286.0,
+            "min": 84.0,
+            "std": 75.48,
+            "mode": 230.2,
+            "cards": 8,
+            "txs": 8,
+            "merchants": 3
+          },
+          {
+            "day": "Tuesday",
+            "avg": 61.98,
+            "max": 100.0,
+            "min": 31.7,
+            "std": 28.41,
+            "mode": 42.98,
+            "cards": 3,
+            "txs": 3,
+            "merchants": 3
+          },
+          {
+            "day": "Wednesday",
+            "avg": 95.85,
+            "max": 187.0,
+            "min": 9.4,
+            "std": 65.57,
+            "mode": 65.47,
+            "cards": 4,
+            "txs": 4,
+            "merchants": 4
+          },
+          {
+            "day": "Friday",
+            "avg": 63.83,
+            "max": 100.0,
+            "min": 32.0,
+            "std": 27.93,
+            "mode": 45.75,
+            "cards": 3,
+            "txs": 3,
+            "merchants": 3
+          },
+          {
+            "day": "Saturday",
+            "avg": 62.62,
+            "max": 126.9,
+            "min": 18.15,
+            "std": 36.46,
+            "mode": 46.55,
+            "cards": 5,
+            "txs": 5,
+            "merchants": 3
+          },
+          {
+            "day": "Sunday",
+            "avg": 172.25,
+            "max": 276.0,
+            "min": 53.0,
+            "std": 79.93,
+            "mode": 212.0,
+            "cards": 4,
+            "txs": 4,
+            "merchants": 4
+          }
+        ]
+      }
+    ]
+  }
+}

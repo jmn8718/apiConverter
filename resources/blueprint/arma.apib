@@ -1,0 +1,656 @@
+FORMAT: 1A
+HOST: http://domain/
+
+# Armadillo - APIs
+
+
+
+# Group Api entity management
+
+## Create and modify an Api [/api]
+
+### Create a new Api [POST]
+Api interface that allow to register one or more Api in Open Platform Global for every Apps.
+The input request will be a Json Array. Each block of Json Array will contain a new Api.
+See *JSON request fields* paragraph for knowing the parameter of each block.
+
+#### JSON request fields
+
+Global structure of the request. It is an array.
+
+Name | Type | Required | Description | Example
+--- | --- | --- | --- | ---
+__api_id__ | String | Required | Unique identifier for the new api | payments
+__api_name__ | String | Required | Name for the new api | Payments Api
+__api_description__ | String | Required | Description for the new  api | Api to obtain payment information
+
+#### JSON response fields
+
+Node | Subnode | Description | Example
+--- | --- | --- | ---
+__result__ | | Information about the result of the operation |
+ | __code__ | Code to identify the status of the result | 200
+ | __info__ | Message with the result of the operation | Success
+ | __internal_code__ | *Optional.* Descriptive and internal code with specific information | SF10001
+__data__ | | Structure with the response. It is an array.
+ | __api_id__ | Unique identifier for the new api | payments
+ | __api_name__ | Name for the new api | Payments Api
+ | __api_description__ | Description for the new  api | Api to obtain payment information
+ | __api_creation_time__ | Creation date for the new  api | 30/01/2015
+ | __api_last_update_time__ | Last update date for the new  api | 02/02/2015
+
+#### Error responses
+
+http status | error | error_ description
+--- | --- | ---
+400 | Invalid request | Parameter *api_id* is mandatory in request index [i]
+400 | Invalid request | Parameter *api_name* is mandatory in request index [i]
+400 | Invalid request | Parameter *api_description* is mandatory in request index [i]
+400 | Invalid request | Insufficient parameter
+409 | Resource already exist | Resource api in request index [i]
+500 | Internal error | The operation could not be completed for an internal error
+
++ Request (application/json)
+
+    + Body
+
+            [
+                {
+                    "api_id": "payments",
+                    "api_name": "Payments Api",
+                    "api_description" : "Api to obtain payment information"
+                },
+                {
+                    "api_id": "cards",
+                    "api_name": "Cards Api",
+                    "api_description" : "Api to obtain card information"
+                }
+            ]
+
+    + Schema
+
+            {
+                {
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "api_id": { "type": "string", "required": true},
+                            "api_name": { "type": "string", "required": true},
+                            "api_description": { "type": "string", "required": true}
+                        }
+                    }
+                }
+            }
+
++ Response 200 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 200,
+                    "info": "OK"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
+
++ Response 400 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 400,
+                    "info": "Invalid request - Parameter api_id is mandatory in request index [i]"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 409 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 409,
+                    "info": "Resource already exist - Resource api in request index [i]"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 500 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 500,
+                    "info": "Internal server error - The operation could not be completed for an internal error"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
+### Modify the data of an existent api [PUT]
+
+Api interface that allow to modify one or more Api in Open Platform Global for every Apps.
+The input request will be a Json Array. Each block of Json Array will contain an Api to be modified.
+See *JSON request fields* paragraph for knowing the parameter of each block.
+
+#### JSON request fields
+
+Global structure of the request. It is an array.
+
+Name | Type | Required | Description | Example
+--- | --- | --- | --- | ---
+__api_id__ | String | Required | Unique identifier in which the action is performed | payments
+__api_name__ | String | Optional | New name for the api | Payments BBVA Api
+__api_description__ | String | Optional | New description for the api | Api to obtain BBVA payment information
+
+#### JSON response fields
+
+Node | Subnode | Description | Example
+--- | --- | --- | ---
+__result__ | | Information about the result of the operation |
+ | __code__ | Code to identify the status of the result | 200
+ | __info__ | Message with the result of the operation | Success
+ | __internal_code__ | *Optional.* Descriptive and internal code with specific information | SF10001
+
+#### Error responses
+
+http status | error | error_ description
+--- | --- | ---
+400 | Invalid request | Parameter *api_id* is mandatory in request index [i]
+404 | Resource not found | The resource with the specified identifier does not exists in request index [i]
+500 | Internal error | The operation could not be completed for an internal error
+
+
++ Request (application/json)
+
+    + Body
+
+            [
+                {
+                    "api_id": "payments",
+                    "api_name": "Payments BBVA Api",
+                    "api_description" : "Api to obtain BBVA payment information"
+                }
+            ]
+
+    + Schema
+
+            {
+                {
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "api_id": { "type": "string", "required": true},
+                            "api_name": { "type": "string", "optional": true},
+                            "api_description": { "type": "string", "optional": true}
+                        }
+                    }
+                }
+            }
+
++ Response 200 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 200,
+                    "info": "Success"
+                }
+            }
+
+   + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 400 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 400,
+                    "info": "Invalid request - Parameter *api_id* is mandatory in request index [i]"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 404 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 404,
+                    "info": "Resource not found - The resource with the specified identifier in request index [i] does not exists"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 500 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 500,
+                    "info": "Error in the connection with the database"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
+## Get and delete Apis [/api{?apiId}]
+Api interfaces that allow to obtain one or a list of Apis and delete one api usinf apiId parameter
+
++ Parameters
+
+    + apiId (optional, string, `payments`) ...  Unique identifier of a given api
+
+### Get an api / api list [GET]
+
+Api interfaces that allow to obtain one or a list of Apis previously inserted. If the apiId parameter is not specified the interface will get a list of apis
+
+#### Request Parameteres
+
+Name | Type | Required | Description | Example
+--- | --- | --- | --- | ---
+__apiId__ | String | Optional | Unique identifier of a given api | payments
+
+#### JSON response fields
+
+Node | Subnode | Description | Example
+--- | --- | --- | ---
+__result__ | | Information about the result of the operation |
+ | __code__ | Code to identify the status of the result | 200
+ | __info__ | Message with the result of the operation | Success
+ | __internal_code__ | *Optional.* Descriptive and internal code with specific information | SF10001
+__data__ | | Structure with the response. It is an array.
+ | __api_id__ | Unique identifier of a given api | payments
+ | __api_name__ | Name of a given api | Payments BBVA Api
+ | __api_description__ | Description of a given api | Api to obtain BBVA payment information
+ | __api_creation_time__ | Creation Date of a given api | 30/01/2015
+ | __api_last_update_time__ | Last update of a given api | 05/02/2015
+
+#### Error responses
+
+http status | error | error_ description
+--- | --- | ---
+404 | Resource not found | The resource with the specified identifier does not exists
+500 | Internal error | The operation could not be completed for an internal error
+
++ Response 200 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {"code": 200, "info": "Success"},
+                "data":
+                    [
+                        {
+                            "api_id": "payments",
+                            "api_name": "Payments BBVA Api",
+                            "api_description": "Api to obtain BBVA payment information",
+                            "api_creation_time" : "30/01/2015",
+                            "api_last_update_time" : "05/02/2015"
+                        },
+                        {
+                            "api_id": "cards",
+                            "api_name": "Cards Api",
+                            "api_description": "Api to obtain card information",
+                            "api_creation_time" : "30/01/2015",
+                            "api_last_update_time" : "06/02/2015"
+                        },
+                        {
+                            "api_id": "clients",
+                            "api_name": "Clients BBVA Api",
+                            "api_description": "Api to obtain client information",
+                            "api_creation_time" : "04/01/2015"
+                        }
+                    ]
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    },
+                    "data": {
+                      "type": "array",
+                      "items":{
+                            "type": "object",
+                            "properties": {
+                                "api_id": { "type": "string", "required": true},
+                                "api_name": { "type": "string", "required": true},
+                                "api_description": { "type": "string", "required": true},
+                                "api_creation_time": { "type": "string", "required": true},
+                                "api_last_update_time": { "type": "string", "optional": true}
+                            }
+                        }
+                    }
+                }
+            }
+
++ Response 404 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 404,
+                    "info": "Resource not found - The resource with the specified identifier does not exists"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "info": { "type": "string", "required": true},
+                        "code": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 500 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 500,
+                    "info": "Error in the connection with the database"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
+### Delete an api [DELETE]
+
+Api interfaces that allow to delete one Api previously inserted.
+
+#### Request Parameteres
+
+Name | Type | Required | Description | Example
+--- | --- | --- | --- | ---
+__apiId__ | String | Required | Unique identifier of a given api | payments
+
+#### JSON response fields
+
+Node | Subnode | Description | Example
+--- | --- | --- | ---
+__result__ | | Information about the result of the operation |
+ | __code__ | Code to identify the status of the result | 200
+ | __info__ | Message with the result of the operation | Success
+ | __internal_code__ | *Optional.* Descriptive and internal code with specific information | SF10001
+
+#### Error responses
+
+http status | error | error_ description
+--- | --- | ---
+400 | Invalid request | Parameter **apiId** is mandatory
+404 | Resource not found | The resource with the specified identifier does not exists
+500 | Internal error | The operation could not be completed for an internal error
+
++ Parameters
+
+    + apiId (required, string, `payments`) ...  Unique identifier of a given api
+
+
++ Response 200 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 200,
+                    "info": "Success"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 400 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 404,
+                    "info": "Invalid request | Parameter **apiId** is mandatory"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "info": { "type": "string", "required": true},
+                        "code": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 404 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 404,
+                    "info": "Resource not found - The resource with the specified **api_id** does not exists"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "info": { "type": "string", "required": true},
+                        "code": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }
+
++ Response 500 (application/json;charset=UTF-8)
+
+    + Body
+
+            {
+                "result": {
+                    "code": 500,
+                    "info": "Error in the connection with the database"
+                }
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "result": {
+                      "type": ["object", "null"],
+                      "properties": {
+                        "code": { "type": "string", "required": true},
+                        "info": { "type": "string", "required": true},
+                        "internal_code": { "type": "string", "required": false }
+                      }
+                    }
+                }
+            }

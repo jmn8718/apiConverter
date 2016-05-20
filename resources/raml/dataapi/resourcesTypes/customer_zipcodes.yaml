@@ -1,0 +1,15 @@
+#%RAML 0.8 ResourceType
+get:
+  is: [date_bounded, group_by, by, category, paged_by_key, errors, authorization]
+  description: !include docs/en/customer_zipcodes/get-description.md
+  responses:
+    200:
+      description: !include docs/en/customer_zipcodes/200.md
+      body:
+        application/json:
+          example: !include examples/customer_zipcodes/200.json
+    206:
+      description: !include docs/en/customer_zipcodes/206.md
+      body:
+        application/json:
+          example: !include examples/customer_zipcodes/206.json

@@ -1,0 +1,92 @@
+{
+  "result": {
+    "code": 206,
+    "info": "Partial Content"
+  },
+  "paging": {
+    "page_size": 4,
+    "links": {
+      "first": {
+        "href": "https://{hostname}/{dimension}/{value}/category_distribution?date_min=201401&date_max=201412&group_by=month&level=category&$page_size=4"
+      },
+      "self": {
+        "href": "https://{hostname}/{dimension}/{value}/category_distribution?date_min=201401&date_max=201412&group_by=month&level=category&$page_size=4"
+      },
+      "next": {
+        "href": "https://{hostname}/{dimension}/{value}/category_distribution?date_min=201401&date_max=201412&group_by=month&level=category&$page_size=4&$page_key=201405"
+      }
+    }
+  },
+  "data": {
+    "stats": [
+      {
+        "date": "201401"
+      },
+      {
+        "date": "201402",
+        "merchants": 20,
+        "cards": 122,
+        "txs": 153,
+        "avg": 58.88,
+        "histogram": [
+          {
+            "label": "es_health",
+            "txs": 75,
+            "avg": 532.07
+          },
+          {
+            "label": "es_food",
+            "txs": 33,
+            "avg": 177.59
+          },
+          {
+            "label": "es_transportation",
+            "txs": 21,
+            "avg": 119.42
+          },
+          {
+            "label": "es_tech",
+            "txs": 7,
+            "avg": 377.93
+          },
+          {
+            "label": "es_auto",
+            "txs": 4,
+            "avg": 1954.75
+          },
+          {
+            "label": "es_home",
+            "txs": 4,
+            "avg": 175.77
+          },
+          {
+            "label": "es_fashion",
+            "txs": 4,
+            "avg": 229.25
+          },
+          {
+            "label": "es_otherservices",
+            "txs": 3,
+            "avg": 633.29
+          },
+          {
+            "label": "es_barsandrestaurants",
+            "txs": 1,
+            "avg": 488.6
+          },
+          {
+            "label": "es_wellnessandbeauty",
+            "txs": 1,
+            "avg": 308
+          }
+        ]
+      },
+      {
+        "date": "201403"
+      },
+      {
+        "date": "201404"
+      }
+    ]
+  }
+}
