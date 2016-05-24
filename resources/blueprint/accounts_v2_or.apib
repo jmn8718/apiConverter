@@ -565,6 +565,9 @@ Provides third parties the ability to book a new deposit account (e.g. DDA accou
 
 + Parameters
 
+    + user_id ( required, string, `a3682d40-fa87-11e4-97a7-0002a5d5c51b` )
+        User identifier.
+
     + status (optional, string, `all`)
 
 
@@ -1188,7 +1191,7 @@ __404__              | account_not_found | The account was not found
             }
 
 
-## Cashin Reverse [/api/v2/accounts/{account_id}/cashin/{third_party_reference_id}]
+## Cashin Reverse [/v2/api/accounts/{account_id}/cashin/{third_party_reference_id}]
 
 + Parameters
 
@@ -2064,6 +2067,8 @@ Each account will be treated separately and the response will include
 
 + Parameters
 
+    + user_id ( required, string, `a3682d40-fa87-11e4-97a7-0002a5d5c51b` )
+        User identifier.
     + account_id ( required, string, `01-0000` )
         User's account identifier.
     + dateFrom (optional, string, `2015-02-01` )
@@ -2717,6 +2722,8 @@ __400__ | missing_header | The header <header_name> is not present.
 
 + Parameters
 
+    + account_id ( required, string, `01-0000` )
+        User's account identifier.
     + dateFrom (optional, string, `2015-02-01` )
         Date From to filter the result of the service. Format YYYY-MM-DD
     + dateTo (optional, string, `2015-02-16` )

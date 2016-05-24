@@ -55,7 +55,7 @@ function _parseResourceGroup(resource){
     //for(var index in parentResource.resources)
     //    console.log(parentResource.resources[index].relativeUri)
 
-    console.log(_parseRelativeUri(parentResource.resources))
+    // console.log(_parseRelativeUri(parentResource.resources))
 
     return parentResource
 }
@@ -67,9 +67,21 @@ function _parseResource(resourceGroup) {
 
     resource.displayName = resourceGroup.name
     resource.description = resourceGroup.description
+    if(resource.description.length>0)
+        resource.description = resource.description.trim()
     resource.relativeUri = resourceGroup.uriTemplate
-    resource.methods = _parseActions(resourceGroup.actions)
-    resource.resources = []
+    if(resource.relativeUri!== undefined && resource.relativeUri.length >0 && resource.relativeUri.indexOf('{?')>0)
+        resource.relativeUri = resource.relativeUri.substring(0,resource.relativeUri.indexOf('{?'))
+    if(resourceGroup.parameters!== undefined && resourceGroup.parameters.length > 0){
+        // console.log(resourceGroup.parameters)
+        resource.uriParameters = _parseUriParameters(resourceGroup.parameters)
+        // console.log('uri',resource.uriParameters)
+        resource.queryParameters = _parseQueryParameters(resourceGroup.parameters)
+        // console.log('query',resource.queryParameters)
+    }
+    resource.methods = _parseActions(resourceGroup.actions,resource.queryParameters)
+    // console.log(resourceGroup['resources'],'\n\n')
+    // resource.resources = resourceGroup['resources']
 
     return resource;
 
@@ -81,36 +93,124 @@ function _parseRelativeUri(resources){
         uris.push(resources[index].relativeUri)
     }
 
-    console.log(uris)
+    // console.log(uris)
 
 }
 
-function _parseActions(actions){
+function _parseActions(actions,queryParameters){
     var parsedActions = []
     for(var index in actions){
         var action = {}
-        console.log(actions[index])
+        if(queryParameters !== undefined && queryParameters != {})
+            action.queryParameters = queryParameters
         action.method = actions[index].method
         action.displayName = actions[index].name
         action.description = actions[index].description
-        action.body = _parseRequest(actions[index])
-        action.responses = _parseResponses(actions[index])
+        if(action.description.length>0)
+            action.description = action.description.trim()
+        if(actions[index]['examples']!==undefined){
+            action.headers = _parseRequestHeaders(actions[index])
+            action.body = _parseRequest(actions[index])
+            action.responses = _parseResponses(actions[index])
+        }
+
         parsedActions.push(action)
     }
-    console.log('parsedActions',parsedActions)
+    // console.log('parsedActions',parsedActions)
     return parsedActions
+}
+
+function _parseQueryParameters(parameters){
+    // "queryParameters": {
+    //         "q": {
+    //           "description": "An optional search query to filter the results",
+    //           "example": "shopping",
+    //           "displayName": "q",
+    //           "type": "string"
+    //         }
+    //       }
+    var queryParameters = {}
+    for(var index in parameters){
+        var parameter = parameters[index];
+        if(parameter['required']==false){
+            queryParameters[parameter['name']] = {
+                "description": parameter['description'],
+                "example": parameter['example'],
+                "displayName": parameter['name'],
+                "values": parameter['values'],
+                "default": parameter['default'],
+                "type":parameter['type']
+            }
+        }
+        
+    }
+
+    return (Object.keys(queryParameters).length > 0 ) ? queryParameters : undefined;
+}
+
+function _parseUriParameters(parameters){
+    // "queryParameters": {
+    //         "q": {
+    //           "description": "An optional search query to filter the results",
+    //           "example": "shopping",
+    //           "displayName": "q",
+    //           "type": "string"
+    //         }
+    //       }
+    var uriParameters = {}
+    for(var index in parameters){
+        var parameter = parameters[index];
+        if(parameter['required']==true)
+            uriParameters[parameter['name']] = {
+                "description": parameter['description'],
+                "example": parameter['example'],
+                "displayName": parameter['name'],
+                "values": parameter['values'],
+                "default": parameter['default'],
+                "type":parameter['type']
+            }
+    }
+
+    return (Object.keys(uriParameters).length > 0) ? uriParameters : undefined;
+}
+
+function _parseRequestHeaders(action){
+    var headers = {}
+    var actionRequest = action.examples[0]['requests'] || []
+
+    if(actionRequest.length === 0)
+        return undefined
+    else{
+        var actionRequestData = actionRequest[0]
+        if(actionRequestData['headers']!==undefined && actionRequestData['headers'].length > 0){
+            for(var index in actionRequestData['headers']){
+                var header = actionRequestData['headers'][index]
+                headers[header['name']] = {
+                    "displayName": header['name'],
+                    "required": true,
+                    "type": "String",
+                    "default":  header['value']
+                }
+            }
+        } else
+            return undefined
+    }
+    return headers;
 }
 
 function _parseRequest(action){
     var resquest = {}
     var actionRequest = action.examples[0]['requests'] || []
+
     if(actionRequest.length === 0)
         return undefined
     else{
         var actionRequestData = actionRequest[0]
         var type = ''
-        if(actionRequestData['headers']!==undefined && actionRequestData['headers'].length > 0)
-            type = actionRequestData['headers'][0]['value']
+        if(actionRequestData['body']!==undefined && actionRequestData['body'].length > 0)
+            type = "application/json"
+        else
+            return undefined
         var example = actionRequestData['body']
         resquest[type] = {
             'example':example

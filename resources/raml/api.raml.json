@@ -1,0 +1,141 @@
+{
+  "title": "Notes Example API",
+  "version": "v2",
+  "mediaType": "application/json",
+  "documentation": [
+    {
+      "title": "Overview",
+      "content": "This is an example of a simple API for a \"notes\" service"
+    }
+  ],
+  "resources": [
+    {
+      "description": "A collection of notes",
+      "relativeUri": "/notes",
+      "methods": [
+        {
+          "description": "List all notes, optionally filtered by a query string",
+          "queryParameters": {
+            "q": {
+              "description": "An optional search query to filter the results",
+              "example": "shopping",
+              "displayName": "q",
+              "type": "string"
+            }
+          },
+          "responses": {
+            "200": {
+              "body": {
+                "application/json": {
+                  "example": "[ { \"id\": 1, \"title\": \"Buy some milk\", \"status\": \"done\" },\n  { \"id\": 2, \"title\": \"Return sweater\", \"status\": \"overdue\", \"dueInDays\": -2 },\n  { \"id\": 3, \"title\": \"Renew license\", \"status\": \"not done\", \"dueInDays\": 1 },\n  { \"id\": 4, \"title\": \"Join gym\", \"status\": \"not done\", \"dueInDays\": 3 } ]\n"
+                }
+              }
+            }
+          },
+          "method": "get"
+        },
+        {
+          "description": "Create a new note in the collection",
+          "body": {
+            "application/json": {
+              "example": "{ \"title\": \"Return sweater\", \"dueInDays\": -2 }\n"
+            }
+          },
+          "headers": {
+            "X-Tracking-Example": {
+              "description": "You can specify request headers like this",
+              "enum": [
+                "accounting",
+                "payroll",
+                "finance"
+              ],
+              "required": false,
+              "example": "accounting",
+              "displayName": "X-Tracking-Example",
+              "type": "string"
+            }
+          },
+          "responses": {
+            "201": {
+              "headers": {
+                "X-Powered-By": {
+                  "description": "You can describe response headers like this",
+                  "example": "RAML",
+                  "displayName": "X-Powered-By",
+                  "type": "string"
+                }
+              },
+              "body": {
+                "application/json": {
+                  "example": "{\n  \"id\": 2,\n  \"title\": \"Return sweater\",\n  \"status\": \"overdue\",\n  \"dueInDays\": -2\n}\n"
+                }
+              }
+            }
+          },
+          "method": "post"
+        }
+      ],
+      "resources": [
+        {
+          "description": "A specific note, identified by its id",
+          "uriParameters": {
+            "id": {
+              "description": "The `id` of the specific note",
+              "type": "number",
+              "example": 2,
+              "displayName": "id",
+              "required": true
+            }
+          },
+          "relativeUri": "/{id}",
+          "methods": [
+            {
+              "description": "Retrieve the specified note",
+              "responses": {
+                "200": {
+                  "body": {
+                    "application/json": {
+                      "example": "{\n  \"id\": 2,\n  \"title\": \"Return sweater\",\n  \"status\": \"overdue\",\n  \"dueInDays\": -2\n}\n"
+                    }
+                  }
+                }
+              },
+              "method": "get"
+            },
+            {
+              "description": "Update the specified note (allowing partial information)",
+              "body": {
+                "application/json": {
+                  "example": "{\n  \"title\": \"Exchange sweater\",\n  \"dueInDays: 3\n}\n"
+                }
+              },
+              "responses": {
+                "200": {
+                  "body": {
+                    "application/json": {
+                      "example": "{\n  \"id\": 2,\n  \"title\": \"Exchange sweater\",\n  \"status\": \"not done\",\n  \"dueInDays\": 3\n}\n"
+                    }
+                  }
+                }
+              },
+              "method": "patch"
+            },
+            {
+              "description": "Remove the specified note",
+              "responses": {
+                "204": null
+              },
+              "method": "delete"
+            }
+          ],
+          "relativeUriPathSegments": [
+            "{id}"
+          ]
+        }
+      ],
+      "relativeUriPathSegments": [
+        "notes"
+      ]
+    }
+  ]
+}

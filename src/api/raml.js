@@ -85,10 +85,10 @@ router.get('/toRaml', function(req, res, next) {
     console.log(pathfile);
 
     raml.loadFile(pathfile).then(function(data) {
-      //console.log(data)
+      console.log(JSON.stringify(data))
       var str = toRAML(data);
       res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-      res.end(str)
+      res.end(JSON.stringify(data,null,2))
     }, function(error) {
       next(error)
     });
