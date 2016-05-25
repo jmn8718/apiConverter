@@ -1,0 +1,22 @@
+{% macro resourceLinks(resource, basePath = '')%}
+    {% if resource.methods %}
+        {% for method in resource.methods %}
+<li class="small-li"><a href="#{{ resource.uniqueId}}_{{ method.method }}">{{ method.method|upper }} {{basePath}}{{ resource.relativeUri }}</a></li>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro resourceSidebar(resource, basePath = '')%}
+    {{ resourceLinks(resource, basePath) }}
+    {% if resource.resources %}
+        {% for resourceInner in resource.resources %}
+            {{ resourceSidebar(resourceInner, basePath + resource.relativeUri) }}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% for resource in resources %}
+    <li><a class="link-li" href="#{{ resource.uniqueId}}">{{basePath}}{{ resource.relativeUri }}</a></li>
+    {{ resourceSidebar(resource) }}
+{% endfor %}

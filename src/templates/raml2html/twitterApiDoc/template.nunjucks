@@ -13,6 +13,8 @@
             color: white;
             margin-bottom: 0;
             border: none;
+            position: fixed;
+            font-size: 30px;
         }
 
         .container-fluid .row .sidebar,
@@ -24,6 +26,9 @@
             color: white;
             padding-top: 60px;
             padding-bottom: 80px;
+            overflow-y: scroll;
+            position: fixed;
+            margin-top: 50px;
         }
 
         .main-container{
@@ -31,6 +36,28 @@
             color: black;
             padding-top: 20px;
             padding-bottom: 40px;
+            margin-top: 50px;
+        }
+        li{
+            word-wrap: break-word;
+        }
+        .small-li{
+            font-size: 12px;
+        }
+        .small-li:before{
+            content: '';
+            height: 105%;
+            position: absolute;
+            width: 1px;
+            background: white;
+        }
+        .nav > li > a.link-li{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .nav > li > a:hover{
+            color: white;
+            background-color: transparent;
         }
     </style>
   <head>
@@ -38,31 +65,30 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        {{ title }} API documentation
+        {{ title }}
       </div>
     </nav>
     <div class="container-fluid">
         <div class="row">
           <div class="hidden-xs col-sm-4 sidebar">
             <div class="row">
-              <div class="col-sm-12 col-md-8 col-md-offset-2">
+              <div class="col-sm-12 col-md-11 col-md-offset-1">
                 <ul class="nav nav-pills nav-stacked">
-                  {% for resource in resources %}
-                    <li><a href="#{{ resource.uniqueId}}">{% if resource.displayName %}{{ resource.displayName}}{% else %}{{ resource.relativeUri }}{% endif %}</a></li>
-                  {% endfor %}
+                  {% include "./sidebar.nunjucks" %}
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-xs-12  col-sm-8 main-container">
+          <div class="col-xs-12  col-sm-8 col-sm-offset-4 main-container">
             <div class="row">
-              <div class="col-xs-12 col-sm-10 col-sm-offset-1 ">
-                 <h1>{{ title }} API documentation{% if version %} <small>version {{ version }}</small>{% endif %}</h1>
-                 <p>{{ baseUri }}</p>
+              <div class="col-md-12 col-lg-10 col-lg-offset-1 ">
+                 <h4>{{ baseUri }} {% if version %} - <i>{{ version }}</i>{% endif %}</h4s>
                  {% for chapter in documentation %}
                    <h3 id="{{ chapter.uniqueId }}"><a href="#{{ chapter.uniqueId }}">{{ chapter.title }}</a></h3>
                    {% markdown %}{{ chapter.content }}{% endmarkdown %}
                  {% endfor %}
+
+                 {% include "./resources.nunjucks" %}
               </div>
             </div>
           </div>
@@ -79,6 +105,7 @@
         var height = $(window).height() - $('.navbar').height();
         $('.main-container').css('min-height',height)
         $('.sidebar').css('min-height',height)
+        $('.sidebar').css('height',height)
       })
     </script>
   </body>
