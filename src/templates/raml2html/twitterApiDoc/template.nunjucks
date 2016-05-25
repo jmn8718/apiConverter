@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{ title }} API documentation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+        .navbar{
+            position: relative;
+            background-color: #55acee;
+            text-align: center;
+            color: white;
+            margin-bottom: 0;
+            border: none;
+        }
+
+        .container-fluid .row .sidebar,
+        .container-fluid .row .main-container{
+            min-height: 640px;
+        }
+        .sidebar{
+            background-color: #021C35;
+            color: white;
+            padding-top: 60px;
+            padding-bottom: 80px;
+        }
+
+        .main-container{
+            background-color: white;
+            color: black;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+    </style>
+  <head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        {{ title }} API documentation
+      </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="hidden-xs col-sm-4 sidebar">
+            <div class="row">
+              <div class="col-sm-12 col-md-8 col-md-offset-2">
+                <ul class="nav nav-pills nav-stacked">
+                  {% for resource in resources %}
+                    <li><a href="#{{ resource.uniqueId}}">{% if resource.displayName %}{{ resource.displayName}}{% else %}{{ resource.relativeUri }}{% endif %}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12  col-sm-8 main-container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1 ">
+                 <h1>{{ title }} API documentation{% if version %} <small>version {{ version }}</small>{% endif %}</h1>
+                 <p>{{ baseUri }}</p>
+                 {% for chapter in documentation %}
+                   <h3 id="{{ chapter.uniqueId }}"><a href="#{{ chapter.uniqueId }}">{{ chapter.title }}</a></h3>
+                   {% markdown %}{{ chapter.content }}{% endmarkdown %}
+                 {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var height = $(window).height() - $('.navbar').height();
+        $('.main-container').css('min-height',height)
+        $('.sidebar').css('min-height',height)
+      })
+    </script>
+  </body>
+</html>
