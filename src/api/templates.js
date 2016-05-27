@@ -23,11 +23,11 @@ router.get('/twitterApiDoc', function(req, res, next) {
 });
 
 router.get('/blueprint/raml2html', function(req, res, next) {
-    var file = 'api.raml';
-    var file = 'accounts_v2.raml';
-    //var file = 'github.raml';
-    // var file = 'example.raml';
-     var file = 'pubapis.apib.raml';
+    var file = 'api.apib.raml';
+    var file = 'accounts_v2.apib.raml';
+    //var file = 'github.apib.raml';
+    // var file = 'example.apib.raml';
+    //  var file = 'pubapis.apib.raml';
 
     var pathfile = path.join(__dirname, '../../resources/blueprint',file);
 

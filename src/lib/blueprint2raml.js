@@ -5,11 +5,30 @@ function _getApiName(blueprint){
 }
 
 function _getDocumentation(blueprint) {
-    if(blueprint.description !== null && blueprint.description.length>0)
-        return [{
-            title: '',
-            content: blueprint.description.trim()
-        }]
+    if(blueprint.description !== null && blueprint.description.length>0){
+        var documentation = []
+        var description = blueprint.description.trim()
+        console.log(description.indexOf('## '))
+        console.log(description)
+        if(description.indexOf('## ') === 0 )
+            description = description.replace('## ','')
+        var descriptionArray = description.split('\n## ')
+        console.log('description elements: ',descriptionArray.length)
+        for(var index in descriptionArray){
+            console.log(descriptionArray[index])
+            if(descriptionArray[index].length > 0){
+                var descriptionElement = descriptionArray[index].trim().split('\n')
+                console.log(descriptionElement)
+                var title = descriptionElement.splice(0,1)[0].trim()
+                var content = descriptionElement.join('\n').trim()
+                documentation.push({
+                    title: title,
+                    content: content
+                })
+            }
+        }
+        return documentation
+    }
     else
         return undefined;
 }
@@ -84,7 +103,7 @@ function _parseResource(resourceGroup) {
 
     resource.methods = _parseActions(resourceGroup.actions,resource.queryParameters)
     // console.log(resourceGroup['resources'],'\n\n')
-    // resource.resources = resourceGroup['resources']
+    resource.resources = resourceGroup['resources']
 
     return resource;
 
@@ -220,45 +239,36 @@ function _parseResponses(action){
     if(actionResponses.length === 0)
         return undefined;
     else{
+        var code, example, schema, type, value
         for(var index in actionResponses){
-            console.log( actionResponses[index])
-            var code = actionResponses[index]['name']
-            var description = actionResponses[index]['description']
-            var type = ''
-            var value = ''
+            // console.log( actionResponses[index])
+            code = actionResponses[index]['name']
+
+            responses[code]= {}
+            responses[code]['description']= actionResponses[index]['description']
+
             if(actionResponses[index]['headers'].length > 0){
                 for(var indexHeader in actionResponses[index]['headers']){
-                    if(actionResponses[index]['headers'][index]['name'].toLowerCase() === 'content-type'){
-                        type = actionResponses[index]['headers'][index]['type']
-                        value = actionResponses[index]['headers'][index]['value']
+                    type = '';
+                    value = '';
+                    if(actionResponses[index]['headers'][indexHeader]['name'].toLowerCase() === 'content-type'){
+                        type = actionResponses[index]['headers'][indexHeader]['type']
+                        value = actionResponses[index]['headers'][indexHeader]['value']
 
+                        responses[code]['body'] = {}
+                        responses[code]['body'][value] = {}
+                        responses[code]['body'][value]['example'] = actionResponses[index]['body']
+                        responses[code]['body'][value]['schema'] = actionResponses[index]['schema']
                     }
-                    else if(actionResponses[index]['headers'][index]['name'].toLowerCase() === 'location'){
-                        type = actionResponses[index]['headers'][index]['name']
-                        value = actionResponses[index]['headers'][index]['value']
+                    else if(actionResponses[index]['headers'][indexHeader]['name'].toLowerCase() === 'location'){
+                        type = actionResponses[index]['headers'][indexHeader]['name']
+                        responses[code]['Headers'] = {}
+                        responses[code]['Headers'][type] = {
+                            'example': actionResponses[index]['headers'][indexHeader]['value'],
+                            'type': 'string',
+                            'description': undefined
+                        };
                     }
-                }
-            }
-            var example = actionResponses[index]['body']
-            if(example===undefined)
-                example = ""
-            var schema = actionResponses[index]['schema']
-            if(schema===undefined)
-                schema = ""
-            responses[code]= {}
-            responses[code]['description']= description
-            if(type.length > 0){
-                if(type.toLowerCase() === 'content-type'){
-                    responses[code]['body'] = {}
-                    responses[code]['body'][type] = {}
-                    if(example.length > 0)
-                        responses[code]['body'][type]['example'] = example
-                    if(schema.length > 0)
-                        responses[code]['body'][type]['schema'] = schema
-                }
-                if(type.toLowerCase() === 'location'){
-                    responses[code]['Headers'] = {}
-                    responses[code]['Headers'][type] = value;
                 }
             }
         }
