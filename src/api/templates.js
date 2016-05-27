@@ -22,7 +22,25 @@ router.get('/twitterApiDoc', function(req, res, next) {
     });
 });
 
-router.get('/raml2html', function(req, res, next) {
+router.get('/blueprint/raml2html', function(req, res, next) {
+    var file = 'api.raml';
+    var file = 'accounts_v2.raml';
+    //var file = 'github.raml';
+    // var file = 'example.raml';
+     var file = 'pubapis.apib.raml';
+
+    var pathfile = path.join(__dirname, '../../resources/blueprint',file);
+
+    var configWithCustomTemplates = raml2html.getDefaultConfig();
+
+    raml2html.render(pathfile, configWithCustomTemplates).then(function(result) {
+        res.end(result)
+    }, function(error) {
+        next(error)
+    });
+});
+
+router.get('/raml/raml2html', function(req, res, next) {
     var file = 'api.raml';
     var file = 'accounts_v2.raml';
     //var file = 'github.raml';

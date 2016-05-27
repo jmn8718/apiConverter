@@ -70,15 +70,18 @@ function _parseResource(resourceGroup) {
     if(resource.description.length>0)
         resource.description = resource.description.trim()
     resource.relativeUri = resourceGroup.uriTemplate
-    if(resource.relativeUri!== undefined && resource.relativeUri.length >0 && resource.relativeUri.indexOf('{?')>0)
-        resource.relativeUri = resource.relativeUri.substring(0,resource.relativeUri.indexOf('{?'))
+
     if(resourceGroup.parameters!== undefined && resourceGroup.parameters.length > 0){
         // console.log(resourceGroup.parameters)
-        resource.uriParameters = _parseUriParameters(resourceGroup.parameters)
+        resource.uriParameters = _parseUriParameters(resourceGroup.parameters, resource.relativeUri)
         // console.log('uri',resource.uriParameters)
-        resource.queryParameters = _parseQueryParameters(resourceGroup.parameters)
+        resource.queryParameters = _parseQueryParameters(resourceGroup.parameters, resource.relativeUri)
         // console.log('query',resource.queryParameters)
     }
+
+    if(resource.relativeUri!== undefined && resource.relativeUri.length >0 && resource.relativeUri.indexOf('{?')>0)
+        resource.relativeUri = resource.relativeUri.substring(0,resource.relativeUri.indexOf('{?'))
+
     resource.methods = _parseActions(resourceGroup.actions,resource.queryParameters)
     // console.log(resourceGroup['resources'],'\n\n')
     // resource.resources = resourceGroup['resources']
@@ -120,19 +123,20 @@ function _parseActions(actions,queryParameters){
     return parsedActions
 }
 
-function _parseQueryParameters(parameters){
-    // "queryParameters": {
-    //         "q": {
-    //           "description": "An optional search query to filter the results",
-    //           "example": "shopping",
-    //           "displayName": "q",
-    //           "type": "string"
-    //         }
-    //       }
+function _parseQueryParameters(parameters, uri){
+    var queryParametersString, queryParametersArray;
+    if(uri.indexOf('{?')>0){
+        queryParametersString = uri.substr(uri.indexOf('{?'))
+        queryParametersString= queryParametersString.replace('{?','').replace('}','')
+        queryParametersArray = queryParametersString.split(',')
+    } else
+        return undefined;
+
+
     var queryParameters = {}
     for(var index in parameters){
         var parameter = parameters[index];
-        if(parameter['required']==false){
+        if(queryParametersArray.indexOf(parameter['name']) != -1){
             queryParameters[parameter['name']] = {
                 "description": parameter['description'],
                 "example": parameter['example'],
@@ -144,23 +148,14 @@ function _parseQueryParameters(parameters){
         }
         
     }
-
     return (Object.keys(queryParameters).length > 0 ) ? queryParameters : undefined;
 }
 
-function _parseUriParameters(parameters){
-    // "queryParameters": {
-    //         "q": {
-    //           "description": "An optional search query to filter the results",
-    //           "example": "shopping",
-    //           "displayName": "q",
-    //           "type": "string"
-    //         }
-    //       }
+function _parseUriParameters(parameters, uri){
     var uriParameters = {}
     for(var index in parameters){
         var parameter = parameters[index];
-        if(parameter['required']==true)
+        if(uri.indexOf('{'+parameter['name']+'}')>0)
             uriParameters[parameter['name']] = {
                 "description": parameter['description'],
                 "example": parameter['example'],
@@ -226,11 +221,24 @@ function _parseResponses(action){
         return undefined;
     else{
         for(var index in actionResponses){
+            console.log( actionResponses[index])
             var code = actionResponses[index]['name']
             var description = actionResponses[index]['description']
             var type = ''
-            if(actionResponses[index]['headers'].length > 0)
-                type = actionResponses[index]['headers'][0]['value']
+            var value = ''
+            if(actionResponses[index]['headers'].length > 0){
+                for(var indexHeader in actionResponses[index]['headers']){
+                    if(actionResponses[index]['headers'][index]['name'].toLowerCase() === 'content-type'){
+                        type = actionResponses[index]['headers'][index]['type']
+                        value = actionResponses[index]['headers'][index]['value']
+
+                    }
+                    else if(actionResponses[index]['headers'][index]['name'].toLowerCase() === 'location'){
+                        type = actionResponses[index]['headers'][index]['name']
+                        value = actionResponses[index]['headers'][index]['value']
+                    }
+                }
+            }
             var example = actionResponses[index]['body']
             if(example===undefined)
                 example = ""
@@ -240,12 +248,18 @@ function _parseResponses(action){
             responses[code]= {}
             responses[code]['description']= description
             if(type.length > 0){
-                responses[code]['body'] = {}
-                responses[code]['body'][type] = {}
-                if(example.length > 0)
-                    responses[code]['body'][type]['example'] = example
-                if(schema.length > 0)
-                    responses[code]['body'][type]['schema'] = schema
+                if(type.toLowerCase() === 'content-type'){
+                    responses[code]['body'] = {}
+                    responses[code]['body'][type] = {}
+                    if(example.length > 0)
+                        responses[code]['body'][type]['example'] = example
+                    if(schema.length > 0)
+                        responses[code]['body'][type]['schema'] = schema
+                }
+                if(type.toLowerCase() === 'location'){
+                    responses[code]['Headers'] = {}
+                    responses[code]['Headers'][type] = value;
+                }
             }
         }
     }
