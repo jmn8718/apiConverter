@@ -4,3 +4,8 @@ node_modules
 resources/blueprint/*.raml
 resources/blueprint/*.html
 resources/raml/*.html
+
+tmp
+
+public
+app

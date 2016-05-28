@@ -57,6 +57,20 @@ router.get('/raml/raml2html', function(req, res, next) {
     });
 });
 
+
+router.get('/temp', function(req, res, next) {
+    var file = req.query.file;
+    var pathfile = path.join(__dirname, '../../',file);
+    console.log(pathfile)
+    var configWithCustomTemplates = raml2html.getDefaultConfig();
+    raml2html.render(pathfile, configWithCustomTemplates).then(function(result) {
+        res.end(result)
+    }, function(error) {
+        next(error)
+    });
+});
+
+
 router.get('/', function(req, res, next) {
     res.render('raml', { title: 'Raml' });
 });
