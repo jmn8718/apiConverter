@@ -6,8 +6,6 @@ var fs = require('fs');
 var protagonist = require('protagonist');
 var aglio = require('aglio');
 
-var apib2swagger = require('apib2swagger')
-var converter = require('swagger-to-raml-object');
 var toRAML = require('raml-object-to-raml');
 
 var utils = require('../lib/utils')

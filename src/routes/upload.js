@@ -20,22 +20,24 @@ var upload = multer({
         cb(null, valid)
     }
 
-}).single('upl');
+}).single('file');
 
 router.post('/', upload , function(req, res, next) {
     if(req.file === undefined || req.file.length <= 0)
         next(new Error('No allowed file provided'))
     else {
         console.log(req.file)
-        res.redirect('templates/temp?file='+req.file.path)
-        // var filename = req.file.originalname;
-        // var contentFile = req.file.buffer.toString('utf8');
-        //
-        // converter(filename, contentFile, function(err, convertedContent){
-        //     if(err)
-        //         next(err)
-        //     res.end(convertedContent)
-        // })
+        console.log(req.query)
+
+        if(req.file.originalname.indexOf('raml')>0)
+            res.redirect('/api/v1/uploads/raml?file='+req.file.path)
+        else if(req.file.originalname.indexOf('apib')>0 || req.file.originalname.indexOf('md')>0)
+            if(req.query.convert)
+                res.redirect('/api/v1/uploads/blueprint2raml?file='+req.file.path)
+            else
+                res.redirect('/api/v1/uploads/blueprint?file='+req.file.path)
+        else
+            next(new Error('Something went wrong'))
     }
 });
 

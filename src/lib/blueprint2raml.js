@@ -6,28 +6,33 @@ function _getApiName(blueprint){
 
 function _getDocumentation(blueprint) {
     if(blueprint.description !== null && blueprint.description.length>0){
-        var documentation = []
-        var description = blueprint.description.trim()
-        console.log(description.indexOf('## '))
-        console.log(description)
-        if(description.indexOf('## ') === 0 )
-            description = description.replace('## ','')
-        var descriptionArray = description.split('\n## ')
-        console.log('description elements: ',descriptionArray.length)
-        for(var index in descriptionArray){
-            console.log(descriptionArray[index])
-            if(descriptionArray[index].length > 0){
-                var descriptionElement = descriptionArray[index].trim().split('\n')
-                console.log(descriptionElement)
-                var title = descriptionElement.splice(0,1)[0].trim()
-                var content = descriptionElement.join('\n').trim()
-                documentation.push({
-                    title: title,
-                    content: content
-                })
-            }
-        }
-        return documentation
+        // var descriptionArray, title, content,descriptionElement;
+        // var documentation = []
+        // var description = blueprint.description.trim()
+        // console.log(description.indexOf('## '))
+        // console.log(description)
+        // if(description.indexOf('## ') === 0 )
+        //     description = description.replace('## ','')
+        // descriptionArray = description.split('\n## ')
+        // console.log('description elements: ',descriptionArray.length)
+        // for(var index in descriptionArray){
+        //     console.log(descriptionArray[index])
+        //     if(descriptionArray[index].length > 0){
+        //         descriptionElement = descriptionArray[index].trim().split('\n')
+        //         console.log(descriptionElement)
+        //         title = descriptionElement.splice(0,1)[0].trim()
+        //         content = descriptionElement.join('\n').trim()
+        //         documentation.push({
+        //             title: title,
+        //             content: content
+        //         })
+        //     }
+        // }
+        // return documentation
+        return [{
+            title: '',
+            content: blueprint.description.trim()
+        }]
     }
     else
         return undefined;

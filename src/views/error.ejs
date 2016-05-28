@@ -1,3 +1,20 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<% include ./partials/head %>
+<% include ./partials/header %>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--12-col-phone">
+        <div class="mdl-card mdl-shadow--4dp" style="width:100%">
+            <div class="mdl-card__supporting-text">
+                <%= message %>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <%= error.status %>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <pre><%= error.stack %></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>
