@@ -1,0 +1,388 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
+
+*, *::before, *::after {
+  box-sizing: border-box; }
+
+body {
+  text-rendering: optimizeLegibility; }
+
+a {
+  text-decoration: none !important; }
+
+.hidden {
+  display: none !important; }
+
+/*********** font size displays **********/
+/*********** font size ************/
+/*********** border radius ************/
+/*********** media queries sizes ************/
+/*********** fonts ************/
+/*********** colors ************/
+/**********************************************/
+/************* Borders ******************/
+.api_market__tooltip, .api-documentation #sidebar .nav__list__link__tooltip {
+  font-family: BBVAWebBook-Regular, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 5px;
+  border: 1px solid #89D1F3;
+  background: #B5E5F9;
+  color: #006EC1;
+  position: absolute;
+  padding: 10px;
+  z-index: 1; }
+
+.api-documentation #header {
+  width: 100%;
+  height: 60px;
+  background-color: #364250;
+  position: fixed;
+  display: block;
+  border-bottom: 1px solid #566270;
+  z-index: 2;
+  text-decoration: none;
+  color: white;
+  top: 0;
+  margin: 0;
+  padding: 0; }
+  .api-documentation #header .action-controls {
+    width: calc(50% + 125px);
+    left: 0;
+    display: inline-block;
+    height: 100%; }
+  .api-documentation #header .code-language-controls {
+    border-left: 1px solid white;
+    width: calc(50% - 125px);
+    right: 0;
+    display: inline-block;
+    height: 100%; }
+
+.api-documentation #sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 640px;
+  background-color: white;
+  margin-top: 60px;
+  font-family: BBVAWebBook-Regular, Helvetica, Arial, sans-serif;
+  z-index: 4; }
+  .api-documentation #sidebar a {
+    width: 100%; }
+  .api-documentation #sidebar .nav-wrapper-scroll {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white; }
+  .api-documentation #sidebar .nav {
+    border-right: 1px solid #566270;
+    margin-bottom: 0; }
+    .api-documentation #sidebar .nav.nav-extend {
+      height: 100%; }
+    .api-documentation #sidebar .nav > .nav__list {
+      margin-right: 10px;
+      padding-top: 30px;
+      padding-bottom: 30px; }
+  .api-documentation #sidebar .nav__list {
+    color: #009EE5;
+    list-style: none;
+    -webkit-padding-start: 0px;
+    padding-left: 20px; }
+    .api-documentation #sidebar .nav__list li a {
+      color: #009EE5; }
+  .api-documentation #sidebar .nav__title {
+    color: white;
+    font-size: 22px;
+    background-color: #364250;
+    padding: 20px;
+    margin: 0;
+    height: 59px;
+    box-sizing: border-box;
+    border-right: 1px solid #FFFFFF;
+    text-align: center;
+    position: relative; }
+  .api-documentation #sidebar .nav__list .nav__list__item {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 2.3em;
+    position: relative; }
+  .api-documentation #sidebar .nav__list.nav__list--sub-list .nav__list__item {
+    line-height: 1.7em; }
+  .api-documentation #sidebar .nav__list__icon {
+    position: absolute;
+    text-align: right;
+    right: 0;
+    z-index: 1; }
+  .api-documentation #sidebar .nav__list__link__tooltip {
+    opacity: 0;
+    font-size: 16px;
+    font-weight: normal;
+    left: 100px;
+    padding: 10px;
+    position: fixed;
+    max-width: calc(100% - 200px);
+    z-index: 2;
+    -moz-transition: opacity 0.1s linear 2s;
+    -webkit-transition: opacity 0.1s linear 2s;
+    transition: opacity 0.1s linear 0s; }
+    .api-documentation #sidebar .nav__list__link__tooltip:hover {
+      opacity: 1;
+      transition-delay: 2s; }
+  .api-documentation #sidebar .nav__list .nav__list__link {
+    line-height: 36px !important;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: normal;
+    vertical-align: top; }
+    .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link-method {
+      max-width: calc(100% - 40px); }
+      .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link-method.nav__list__link--active {
+        max-width: calc(100% - 40px); }
+  .api-documentation #sidebar .nav__list .nav__list__link:hover {
+    color: #009EE5;
+    cursor: pointer;
+    font-weight: normal; }
+    .api-documentation #sidebar .nav__list .nav__list__link:hover + .nav__list__link__tooltip {
+      opacity: 1;
+      transition-delay: 2s; }
+  .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link--active {
+    color: #566270;
+    max-width: calc(100% - 10px); }
+  .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link--active:after {
+    content: '';
+    width: 23px;
+    height: 23px;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    border-left: 1px solid #566270;
+    border-bottom: 1px solid #566270;
+    margin: -14px -2px;
+    top: 20px;
+    right: -20px;
+    background-color: white;
+    box-sizing: border-box;
+    z-index: 2; }
+  .api-documentation #sidebar .nav__list .nav__list__item .nav__list__item {
+    font-size: 18px;
+    text-transform: initial;
+    font-weight: normal; }
+  .api-documentation #sidebar .nav__list .nav__list__item .nav__list__item .nav__list__item {
+    font-size: 14px;
+    text-transform: initial;
+    font-weight: normal; }
+  .api-documentation #sidebar .nav__list--sub-list .nav__list__item {
+    font-family: BBVAWebLight-Regular, Helvetica, Arial, sans-serif; }
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
+
+*, *::before, *::after {
+  box-sizing: border-box; }
+
+body {
+  text-rendering: optimizeLegibility; }
+
+a {
+  text-decoration: none !important; }
+
+.hidden {
+  display: none !important; }
+
+/*********** font size displays **********/
+/*********** font size ************/
+/*********** border radius ************/
+/*********** media queries sizes ************/
+/*********** fonts ************/
+/*********** colors ************/
+/**********************************************/
+/************* Borders ******************/
+.api_market__tooltip, .api-documentation #sidebar .nav__list__link__tooltip {
+  font-family: BBVAWebBook-Regular, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 5px;
+  border: 1px solid #89D1F3;
+  background: #B5E5F9;
+  color: #006EC1;
+  position: absolute;
+  padding: 10px;
+  z-index: 1; }
+
+.api-documentation #header {
+  width: 100%;
+  height: 60px;
+  background-color: #364250;
+  position: fixed;
+  display: block;
+  border-bottom: 1px solid #566270;
+  z-index: 2;
+  text-decoration: none;
+  color: white;
+  top: 0;
+  margin: 0;
+  padding: 0; }
+  .api-documentation #header .action-controls {
+    width: calc(50% + 125px);
+    left: 0;
+    display: inline-block;
+    height: 100%; }
+  .api-documentation #header .code-language-controls {
+    border-left: 1px solid white;
+    width: calc(50% - 125px);
+    right: 0;
+    display: inline-block;
+    height: 100%; }
+
+.api-documentation #sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 640px;
+  background-color: white;
+  margin-top: 60px;
+  font-family: BBVAWebBook-Regular, Helvetica, Arial, sans-serif;
+  z-index: 4; }
+  .api-documentation #sidebar a {
+    width: 100%; }
+  .api-documentation #sidebar .nav-wrapper-scroll {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white; }
+  .api-documentation #sidebar .nav {
+    border-right: 1px solid #566270;
+    margin-bottom: 0; }
+    .api-documentation #sidebar .nav.nav-extend {
+      height: 100%; }
+    .api-documentation #sidebar .nav > .nav__list {
+      margin-right: 10px;
+      padding-top: 30px;
+      padding-bottom: 30px; }
+  .api-documentation #sidebar .nav__list {
+    color: #009EE5;
+    list-style: none;
+    -webkit-padding-start: 0px;
+    padding-left: 20px; }
+    .api-documentation #sidebar .nav__list li a {
+      color: #009EE5; }
+  .api-documentation #sidebar .nav__title {
+    color: white;
+    font-size: 22px;
+    background-color: #364250;
+    padding: 20px;
+    margin: 0;
+    height: 59px;
+    box-sizing: border-box;
+    border-right: 1px solid #FFFFFF;
+    text-align: center;
+    position: relative; }
+  .api-documentation #sidebar .nav__list .nav__list__item {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 2.3em;
+    position: relative; }
+  .api-documentation #sidebar .nav__list.nav__list--sub-list .nav__list__item {
+    line-height: 1.7em; }
+  .api-documentation #sidebar .nav__list__icon {
+    position: absolute;
+    text-align: right;
+    right: 0;
+    z-index: 1; }
+  .api-documentation #sidebar .nav__list__link__tooltip {
+    opacity: 0;
+    font-size: 16px;
+    font-weight: normal;
+    left: 100px;
+    padding: 10px;
+    position: fixed;
+    max-width: calc(100% - 200px);
+    z-index: 2;
+    -moz-transition: opacity 0.1s linear 2s;
+    -webkit-transition: opacity 0.1s linear 2s;
+    transition: opacity 0.1s linear 0s; }
+    .api-documentation #sidebar .nav__list__link__tooltip:hover {
+      opacity: 1;
+      transition-delay: 2s; }
+  .api-documentation #sidebar .nav__list .nav__list__link {
+    line-height: 36px !important;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: normal;
+    vertical-align: top; }
+    .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link-method {
+      max-width: calc(100% - 40px); }
+      .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link-method.nav__list__link--active {
+        max-width: calc(100% - 40px); }
+  .api-documentation #sidebar .nav__list .nav__list__link:hover {
+    color: #009EE5;
+    cursor: pointer;
+    font-weight: normal; }
+    .api-documentation #sidebar .nav__list .nav__list__link:hover + .nav__list__link__tooltip {
+      opacity: 1;
+      transition-delay: 2s; }
+  .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link--active {
+    color: #566270;
+    max-width: calc(100% - 10px); }
+  .api-documentation #sidebar .nav__list .nav__list__link.nav__list__link--active:after {
+    content: '';
+    width: 23px;
+    height: 23px;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    border-left: 1px solid #566270;
+    border-bottom: 1px solid #566270;
+    margin: -14px -2px;
+    top: 20px;
+    right: -20px;
+    background-color: white;
+    box-sizing: border-box;
+    z-index: 2; }
+  .api-documentation #sidebar .nav__list .nav__list__item .nav__list__item {
+    font-size: 18px;
+    text-transform: initial;
+    font-weight: normal; }
+  .api-documentation #sidebar .nav__list .nav__list__item .nav__list__item .nav__list__item {
+    font-size: 14px;
+    text-transform: initial;
+    font-weight: normal; }
+  .api-documentation #sidebar .nav__list--sub-list .nav__list__item {
+    font-family: BBVAWebLight-Regular, Helvetica, Arial, sans-serif; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.api-documentation #api-doc {
+  background: blue;
+  min-height: 640px;
+  width: auto;
+  top: 0;
+  left: 250px;
+  margin-top: 60px;
+  margin-left: 250px; }
