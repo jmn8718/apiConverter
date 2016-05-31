@@ -79,6 +79,42 @@ router.get('/blueprint2raml', function(req, res, next) {
                             next(err)
                         else {
                             var str = toRAML(ramlObj);
+                            raml2html.render(str, configWithDefaultTemplates).then(function(result) {
+                                res.end(result)
+                            }, function(error) {
+                                next(error)
+                            });
+                        }
+                    })
+                }
+            });
+    })
+});
+
+router.get('/blueprint2raml_am', function(req, res, next) {
+    var file = req.query.file;
+    var pathfile = path.join(__dirname, '../../',file);
+    console.log(pathfile)
+
+    var options = {
+        requireBlueprintName: true,
+        type: 'ast',
+        // generateSourceMap: true
+    }
+    fs.readFile(pathfile, 'utf-8', function(error, content){
+        if(error)
+            next(error)
+        else
+            protagonist.parse(content, options, function(error, data) {
+                if (error)
+                    next(error)
+                else{
+                    //console.log(data);
+                    blueprint2raml(data.ast, function(err, ramlObj){
+                        if(err)
+                            next(err)
+                        else {
+                            var str = toRAML(ramlObj);
                             var config = raml2html.getDefaultConfig('am_doc.njk', path.join(__dirname, '../templates/raml2html/am_doc'));
                             console.log(str)
                             raml2html.render(str, config).then(function(result) {
@@ -92,5 +128,4 @@ router.get('/blueprint2raml', function(req, res, next) {
             });
     })
 });
-
 module.exports = router;
