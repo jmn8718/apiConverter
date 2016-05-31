@@ -1,0 +1,715 @@
+@import "_reset.scss";
+@import "_am-fonts.scss";
+@import "_am-variables.scss";
+@import "_am-tooltip.scss";
+@import "_am-scroll.scss";
+@import "_am-grid-layout.scss";
+@import "_am-nav.scss";
+@import "_am-header.scss";
+@import "_am-resizer.scss";
+@import "_am-hljs.scss";
+@import "_am-console.scss";
+
+#nav-anchor {
+	line-height: 0;
+}
+
+.api-documentation {
+
+	min-width: $documentation-width;
+	font-family: $font-book-regular;
+
+	article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+		display: block
+	}
+	body {
+		line-height: 1
+	}
+	ol, ul {
+		list-style: none;
+	}
+	ol.api__documentation__ordered-list {
+		list-style: decimal;
+	}
+	
+	blockquote, q {
+		quotes: none
+	}
+	blockquote:before, blockquote:after, q:before, q:after {
+		content: none
+	}
+	
+	table {
+		border-collapse: inherit;
+		border-spacing: 0;
+
+	}
+	
+	pre{
+		white-space: pre-wrap;       /* CSS 3 */
+		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		white-space: -pre-wrap;      /* Opera 4-6 */
+		white-space: -o-pre-wrap;    /* Opera 7 */
+		word-wrap: break-word;       /* Internet Explorer 5.5+ */
+		display: inline-block;
+	}
+
+	a:-webkit-any-link {		
+		color: inherit;
+		text-decoration: none;
+		cursor: auto;		
+	}
+	
+	#api-doc {
+		margin-left: $sidebar-width;
+		margin-bottom: 0;
+	}
+	
+	.api__documentation__http {
+		font-family: $font-book-regular;
+		display: inline-block;
+		text-transform: uppercase;
+		line-height: 1em;
+		font-weight: 600;
+		background-color: $green;
+		color: $white;
+		width: 35px;
+		text-align: center;
+		padding: .6em .1em;
+		font-size: 10px;
+	}
+	
+	.api__documentation__http--get {
+		background-color: $green;
+	}
+	
+	.api__documentation__http--post {
+		background-color: $blue2;
+	}
+	
+	.api__documentation__http--put {
+		background-color: $yellow;
+	}
+	
+	.api__documentation__http--delete {
+		background-color: $magenta;
+	}
+	
+	.api__documentation__http--patch {
+		background-color: $blue5;
+	}
+	
+	.api__documentation--table-description{
+		margin-bottom: 30px;
+	}
+	.api-doc__section {
+
+		position: relative;
+
+		&.api-doc__section--example-expanded {
+			&:after, &:before {
+				left: 0;
+			}
+		}
+
+		> article {
+			position: relative;
+			display: table;
+			width: 100%;
+			table-layout: fixed;
+			
+			&:first-child {
+				margin-top: $header-size;
+				.api__documentation:before {
+					content: '';
+					width: 50%;
+					height: 100px;
+					background: $grey-blue-dark;
+					position: absolute;
+					top: -100px;
+					right: 0px;
+				}
+
+				.api__example--expanded {
+					height: calc(100% - 60px);
+					top: 0;
+				}
+			}
+		}			
+	}
+	
+	.api__documentation {
+		display: table-cell;
+		width: 50%;
+		padding: 10px;
+		padding-right: 20px;
+		border-bottom: $api-section-border-size solid $grey-blue;
+		.api__documentation__title-action {
+
+			.api__documentation__title{
+				display: inline-block;
+				line-height: 30px;
+				max-width: calc(100% - 100px);
+				color: $blue4;
+				.api-console__icon__link--switch{
+					padding-right: 40px;
+					display: inline-block;
+					&:before {
+						@include icon-link-before;
+						border-top: 1px solid $blue4;
+						border-right: 1px solid $blue4;
+						margin: -14px 0px 0px 18px;
+					}
+					&:after {
+						@include icon-link-after;
+						border: 1px solid $blue4;
+						margin: -22px 0px -22px 12px;;
+					}
+					&:hover {
+						cursor: pointer;
+						opacity: 0.6;
+					}
+				}
+		}
+		.api__documentation__icon {
+			display: inline-block;
+			vertical-align: top;
+			padding: 5px 10px;
+			margin: 30px 20px;
+			display: inline-block;
+		}
+	}
+
+	article{
+		margin-bottom: 30px;
+	}
+}	
+
+.api__example {
+	font-family: $font-light-regular;
+	line-height: 1.5em;
+	font-size: 15px;
+	padding: 0;
+	/* 		padding-left: 9px; */
+	display: table-cell;
+	background-color: $grey-blue-dark;
+	position: relative;
+	border-bottom: $api-section-border-size solid $grey-blue-light;
+	width: 50%;
+	border-left:1px solid $grey-blue-light;
+
+	.api__documentation__title{
+		margin: 40px 30px 30px;
+	}
+	.api__example_header-bar{
+		height: 60px;
+		padding: 20px;
+		background-color: $grey-blue;
+		font-family: $font-light-regular;
+		font-size: 20px;
+
+		.api__example_header-bar_action{
+			color: $white;
+			padding-right: 40px;
+			position: absolute;
+			right: 20px;
+
+			&:before {
+				@include icon-link-before;
+					display: block;
+					margin: -6px 0;
+					top: 50%;
+					border-top: 1px solid white;
+					border-right: 1px solid white;
+					right: 10px;
+				}
+				&:after {
+					@include icon-link-after;
+					display: block;
+					border: 1px solid white;
+					top: 50%;
+					margin: -14px 0;
+					right: 0;
+				}
+				&:hover {
+					cursor: pointer;
+					opacity: 0.6;
+				}
+			}
+		}
+		.api__example-documentation{
+			margin: 0;	    	
+			padding: 10px;
+
+			>  * {
+				margin-bottom:30px;
+			}
+		}
+
+		&:before {
+			content: '';
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: -10px;
+			width: 9px;
+			background-color: $grey-blue;
+		}
+		
+		&.api__example--place-holder {
+			vertical-align: middle;
+			margin: 30px 20px;
+
+			.place-holder {
+				color: $grey-blue-light;
+				text-shadow: 1px 1px 0px rgba(0, 0, 0, .75);
+				text-align: center;
+				margin: 0;
+			}
+			.place-holder--title {
+				font-size: 22px;
+				text-transform: capitalize;
+			}
+			.place-holder--text {
+				font-size: 16px;
+			}
+		}
+
+		&.api__example--compress {
+			-webkit-animation: fade-from-right .25s;
+			animation: fade-in-from-right .25s;
+		}
+
+		.api__documentation__subtitle, .api__documentation__subtitle_section, .api__documentation__subtitle_status-code{
+			color: $white;
+			text-shadow:none;
+			font-size: $font-size-display-3;
+			font-family: $font-book-regular;
+			margin: 0 30px 30px;
+		}
+		.api__documentation__subtitle_section{
+			font-size: $font-size-display-2;
+		}
+		.api__documentation__subtitle_status-code{
+			font-size: $font-size-display-1;
+		}
+		
+		.example__status-codes-wrapper{
+			margin: 0 30px 30px;
+			line-height: 2.28em;
+		}	
+		.example__info__col{
+			margin: 0 0 20px;
+			font-family: $font-book-regular;
+			width: calc(50% - 10px);
+			vertical-align: top;
+			display: inline-block;
+			&.example__info__col-full{
+				width: 100%
+			}
+			.example__info__block:first-child{
+				margin-left: 30px;
+			}
+		}
+		.example__info__block {
+			display: block;
+			margin-left: 0;
+			vertical-align: top;
+			color: $white;
+			font-size: $font-size-regular;
+			font-family: $font-book-regular;
+			margin: 0 20px;
+		}
+		table.example__info__block {
+			width: 100%;
+			display: table;
+		}
+		.example__info__text{
+			display: inline;
+			color: $white;
+			text-shadow: none;
+			opacity: 0.9;
+			vertical-align: top;
+			font-size: 15px;
+		}
+		.example__status-code {
+			color: $grey-blue-dark;
+			background-color: $grey-blue;
+			padding: 0px 20px;
+			font-weight: 600;
+			margin-right: 10px;
+			font-family: $font-book-regular;
+			display: inline-block;
+			line-height: 1.7em;
+			font-size: 1em;
+			vertical-align: middle;
+			
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		
+		.example__status-code.example__status-code--selected {
+			background-color: white;
+		}
+		
+		.examples-container{
+			padding: 0 20px 30px;
+			.example-code_container{
+				margin: 0;
+			}
+		}
+		.example-code_container{
+			margin: 0 20px 30px;
+		}
+		.example__status-codes{
+			margin-bottom: 0;
+		}
+		
+		.md-item, .api__documentation__text{
+			color: $white;
+		}
+	}
+	.api__example--compress {
+		-webkit-animation: fade-from-left .25s;
+		animation: fade-from-left .25s;
+	}
+
+	.md-item{
+		color: $grey-blue;
+		> * {
+			margin: 0 10px 30px 20px;
+		}
+		
+		> table {
+			margin: 0 10px 30px;
+		}
+		
+		> pre.example-code_container {
+			width: calc(100% - 20px);
+			margin-left: 10px;
+		}
+		h2{
+			text-transform: uppercase;
+			font-size: $font-size-display-2;
+			/* 			font-family: $font-light-regular; */
+			font-weight: normal;
+			color: $grey-blue;
+			/*-From old design*/
+			font-size: 22px;
+			line-height: 22px;
+			font-family: $font-light-regular;
+			font-weight: 300;
+			color: $grey-black;		    
+			/*-From old design*/
+		}
+	}
+	
+	.api__documentation__title {
+		font-size: $font-size-display-4;
+		line-height: $font-size-display-4;
+		font-family: $font-light-regular;
+		color: $grey-blue;
+		margin: 30px 15px 30px 20px;
+		/* Chrome */
+		word-wrap: break-word;
+		/* Firefox */
+		word-break: break-all;
+
+		/*-From old design*/
+		font-size: 30px;
+		line-height: 30px;
+		font-family: $font-light-regular;
+		font-weight: 300;
+		color: $grey-black;	    
+		/*-From old design*/
+		
+		&.api__documentation__title__example{
+			color: $white;
+		}
+		
+	}
+	
+	.api__documentation__text{
+		color: inherit;
+		/* 		font-size: $font-size-body; */
+		/* 		font-family: $font-book-regular; */
+		/* 		line-height: $font-size-body-line-height; */
+		
+		/*-From old design*/
+		text-align: left;
+		font-family: $font-book-regular;
+		line-height: 24px;
+		font-size: $font-size-body;
+		font-weight: 300;
+		text-shadow: none;
+		color: $grey-blue;
+		text-rendering: optimizeLegibility;
+		/*-From old design*/
+		
+		word-wrap: break-word;
+	}
+	
+	.api__documentation-link{
+		color: $blue4;
+		font-size: $font-size-link;
+		text-decoration: none;
+		cursor: auto;
+		font-family: $font-book-regular;
+	}
+	.api__documentation-link:-webkit-any-link {
+		font-size: $font-size-body;
+		color: $blue4;
+		font-family: $font-book-regular;
+	}
+	
+	.api__documentation--table-elements{
+		display: block;
+		th, td {
+			font-family: $font-book-regular;
+			font-weight: normal;
+			line-height: 16px;
+			color: $grey-black;
+			padding: 10px;
+			text-align: left;
+			min-width: 5em;
+			border-bottom: 1px solid #BCBCBC;
+			
+		}
+
+		td {
+			font-size: $font-size-table-body;
+			line-height: 14px;
+			word-break: initial;
+			&:last-child{
+				word-wrap: break-word; /* Chrome */
+				word-break: break-all;/* Firefox */
+			}
+		}
+		th {
+			font-size: $font-size-table-body;
+			font-family: $font-book-bold;
+			font-weight: bold;
+			padding-top: 0;
+			white-space: pre;
+		}
+		&.api__documentation--table-elements--compressed tr td {
+			padding-top: 0;
+			padding-bottom: 0;
+			font-size: $font-size-body;
+		}
+		tbody tr {
+
+			font-size: $font-size-table-body;
+			border-left: 0;
+			border-right: 0;
+
+			line-height: 24px;
+			
+			&:first-child td.with_border-top{
+				border-top: 1px solid #BCBCBC;			
+			}
+		}
+	}
+	
+	ul.api__documentation__unordered-list, ol.api__documentation__ordered-list {
+		font-family: $font-book-regular;
+		color: $grey-blue;
+		font-size: $font-size-document;
+		padding-left: 15px;
+		list-style-type: disc;
+		line-height: 24px;
+		/* 		margin-bottom: 24px; */
+	}
+	ul.api__documentation__unordered-list {		
+		ul {
+			padding-left: 15px;
+			list-style-type: disc;
+		}
+	}
+
+	ol.api__documentation__ordered-list {
+		ol {
+			padding-left: 15px;
+			list-style-type: decimal;
+		}
+	}
+	
+	.api__documentation__section-name {
+		display: inline-block;
+		vertical-align: middle;
+		font-family: $font-book-regular;
+		font-weight: 300;
+		font-size: $font-size-table-title-1;
+		color: $blue4;
+		margin: 30px 20px 30px;
+		/*-old style*/
+		font-family: "BBVAWebLight-Bold", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		font-size: 18px;
+		color: $grey-black;
+		margin-bottom: 10px;
+		/*-old style*/
+		
+		&:first-child{
+			margin-top:0;
+		}
+	}
+
+	
+	.api__documentation--table-parameters{
+		margin: 30px 10px;
+		display: table;
+		width: 96%;
+		
+		.api__documentation--table-parameters-title{
+			font-size: $font-size-table-title-1;
+			color: $grey-blue;			
+			font-family: $font-book-regular;
+			margin: 30px 10px 10px;
+		}
+		
+		color: $grey-blue;
+		
+		td{
+			font-size: $font-size-table-body;
+			border-top: 1px solid $grey-blue;
+			padding: 5px 10px;
+			
+			&:first-child{
+				font-size: $font-size-table-title-2;
+				width: 20%;
+			}
+		}
+		
+		tr:first-child td{
+			border-top: none;
+		}
+		
+		&.with_margin-bottom {
+			margin-bottom: 30px;
+		}
+	}
+	.api__documentation__parameters{
+		width: 100%;
+		display: table;
+
+		border-top: 1px solid $grey;
+		&:last-child {
+			border-bottom: 1px solid $grey;
+		}
+		.md-item > *{
+			padding: 0;
+			margin: 0;
+		}
+		.api__documentation__parameters__row{
+			display: table-row;
+			padding: 0 0 10px;
+			margin: 0;
+
+			&.api__documentation__parameters__row-top {
+				margin-bottom: 12px;
+			}
+			.api__documentation__parameters__col{
+				width: 50%;
+				display: table-cell;
+				vertical-align: top;
+				padding: 5px 0;
+
+				word-break: break-all;
+				word-wrap: break-word;
+
+				&:first-child {
+					padding-right: 10px;
+				}
+				&:last-child {
+					padding-left: 10px;
+				}
+				.api__documentation__parameters__title, .api__documentation__parameters__text {
+					font-weight: normal;
+					font-size: $font-size-table-title-2;
+					display: block;
+					color: $grey-black;
+					font-family: $font-book-regular;
+				}
+
+				.api__documentation__parameters__text {
+					font-size: $font-size-table-body;
+				}
+			}
+		}
+		.col--first, .col--second {
+			/* 		    padding-left: 10px; */
+			/* 		    padding-right: 10px; */
+			/* 		    width: 50%; */
+			/* 		    display: table-cell; */
+			/* 		    position: relative; */
+		}
+		
+		.api__documentation__block {
+			display: block;
+		}
+		
+		.col--second {
+			.parameters__description, .paramters__example {
+				font-size: 12px;
+				font-family: $font-book-regular;
+			}
+		}
+		.parameters__parameter, .parameters__default {
+			display: block;
+			color: $grey-black;
+			font-size: 14px;
+		    //font-weight: 600;
+		    font-family: $font-book-regular;
+		}
+		
+		.paramters__example, .parameters__default {
+			padding: 12px 0 0;
+			bottom: 0;
+
+		}
+		.paramters__example {
+			display: block;
+		}
+		
+		.parameters__default {
+			position: absolute;
+		}
+		
+		.parameters__type {
+			display: inline;
+		}
+
+	}
+	
+	.example-code_container{
+		width: 100%;
+		background-color: $grey-black;
+		border: none;
+		color: $white;
+		padding: 15px;
+		font-family: $font-light-regular;
+
+		word-break: break-all;
+		word-wrap: break-word;
+		white-space: pre-wrap;
+	}
+
+	.example-code_container-console{
+		width: 100%;
+		background-color: $grey-black;
+		border: none;
+		color: $white;
+		font-family: $font-light-regular;
+
+	}
+
+}
+
+.api-doc--example-expanded .api__example:before {
+	left: -1px;
+}
+.text-center{
+	text-align: center;
+}

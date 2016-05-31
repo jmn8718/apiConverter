@@ -1,0 +1,45 @@
+.resizer {
+	position: absolute;
+	height: 40px;
+	width: 9px;
+	background-color: $grey-blue-light;
+
+    margin:0;
+    left:calc(50% + 116px);
+    z-index: 2;
+
+    &:hover {
+    	cursor: pointer;
+    }
+}
+
+.resizer__arrow {
+	width: 6px;
+	height: 8px;
+	border-right: 5px solid $grey-blue;
+	position: absolute;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+	top: 50%;
+	left: 0;
+	z-index: 1;
+	box-sizing: border-box;
+	margin: -50% 0;
+
+	&.resizer__arrow--displayed-content {
+		border-left: 5px solid $grey-blue;
+		border-right: none;
+		left: 2px;
+	}
+}	
+
+.resizer.resizer--displayed-content {
+	left: $sidebar-width !important;
+	margin: 0;
+}
+
+@media screen and (max-width: 1213px) {
+	.api-documentation .resizer{
+		left:calc(1200px / 2  + 126px);
+	}
+}

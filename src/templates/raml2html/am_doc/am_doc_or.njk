@@ -1,0 +1,29 @@
+[#ftl]
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/">
+<title>${model.title?html} (v${model.version?html})</title>
+{% include "./layouts/am_doc-styles.njk" %}
+</head>
+<body>
+
+<!-- Import libs -->
+	[#import "apimarket/code/code-curl.ftl" as macro_code_curl]
+	[#import "apimarket/code/code-java.ftl" as macro_code_java]
+	[#import "apimarket/code/code-python.ftl" as macro_code_python]
+	[#import "apimarket/lib/macroSidebarResource.ftl" as macro_sidebar_resource]
+	[#import "apimarket/lib/macroContentAction.ftl" as macro_content_action]
+	[#import "apimarket/lib/macroContentResource.ftl" as macro_content_resource]
+	[#import "apimarket/lib/macroDocumentation.ftl" as macro_documentation]
+<!-- /Import libs -->
+
+	<div id="content" class="api-documentation">
+	[#include "apimarket/layouts/apimarket-header.ftl"]
+	[#include "apimarket/layouts/apimarket-sidebar.ftl"]
+	[#include "apimarket/layouts/apimarket-content.ftl"]
+
+	</div> <!-- content -->
+	[#include "apimarket/layouts/apimarket-scripts.ftl"]
+</body>
+</html>

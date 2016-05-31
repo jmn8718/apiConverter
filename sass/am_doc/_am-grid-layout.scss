@@ -1,0 +1,97 @@
+.row, 
+.col-amkt {
+    box-sizing: border-box;
+}
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.col-amkt {
+    position: relative;
+    float: left;
+}
+
+/* Creating gutters */
+// .col-amkt + .col-amkt {
+//     margin-left: 1.6%;
+// }
+
+.col-amkt-1 {
+    width: 6.86666666667%;
+}
+
+.col-amkt-2 {
+    width: 15.3333333333%;
+}
+
+.col-amkt-3 {
+    width: 23.8%;
+}
+
+.col-amkt-4 {
+    width: 32.2666666667%;
+}
+
+.col-amkt-5 {
+    width: 40.7333333333%;
+}
+
+.col-amkt-6 {
+    width: 49.2%;
+}
+
+.col-amkt-7 {
+    width: 57.6666666667%;
+}
+
+.col-amkt-8 {
+    width: 66.1333333333%;
+}
+
+.col-amkt-9 {
+    width: 74.6%;
+}
+
+.col-amkt-10 {
+    width: 83.0666666667%;
+}
+
+.col-amkt-11 {
+    width: 91.5333333333%;
+}
+
+.col-amkt-12 {
+    width: 100%;
+}
+
+/*
+@media only screen and (max-width: 550px) {
+    .col-amkt-1, 
+    .col-amkt-2, 
+    .col-amkt-3, 
+    .col-amkt-4, 
+    .col-amkt-5, 
+    .col-amkt-6, 
+    .col-amkt-7, 
+    .col-amkt-8, 
+    .col-amkt-9, 
+    .col-amkt-10, 
+    .col-amkt-11, 
+    .col-amkt-12 {
+        width: auto;
+        float: none;
+    }
+
+    .col-amkt + .col-amkt {
+        margin-left: 0;
+    }
+}
+*/
+

@@ -1,24 +1,8 @@
-@import 'reset';
-@import 'variables';
-@import 'mixins';
+@import './api_documentation/reset';
+@import './api_documentation/variables';
+@import './api_documentation/mixins';
 
-@import 'tooltip';
-@import 'header';
-@import 'sidebar';
-
-.container{
-  width: 100%;
-  height: 100%;
-}
-
-.api-documentation{
-  #api-doc{
-    background: blue;
-    min-height: $container-min-height;
-    width: auto;
-    top: 0;
-    left: $sidebar-width;
-    margin-top: $header-height;
-    margin-left: $sidebar-width;
-  }
-}
+@import './api_documentation/tooltip';
+@import './api_documentation/header';
+@import './api_documentation/sidebar';
+@import './api_documentation/documentation';

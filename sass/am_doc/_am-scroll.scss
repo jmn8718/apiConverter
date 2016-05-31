@@ -1,0 +1,20 @@
+.api-documentation ::-webkit-scrollbar, .sidebar ::-webkit-scrollbar{
+  width: 0px;
+}
+
+.api-documentation ::-webkit-scrollbar-button, .sidebar ::-webkit-scrollbar-button {
+  width: 0px;
+  height: 5px;
+}
+
+.api-documentation ::-webkit-scrollbar-track, .sidebar ::-webkit-scrollbar-track {
+  background: $grey-light;
+  border: thin solid $blue4;
+  box-shadow: 0px 0px 3px $grey-light inset;
+  border-radius: 4px;
+}
+
+.api-documentation ::-webkit-scrollbar-thumb, .sidebar ::-webkit-scrollbar-thumb {
+  border: thin solid $blue4;
+  border-radius: 4px;
+}

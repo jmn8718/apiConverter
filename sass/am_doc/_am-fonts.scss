@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "BBVAWebLight-Regular";
+  src: url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-light.woff") format('woff');
+}
+
+@font-face {
+  font-family: "BBVAWebSemibold-Regular";
+  src: url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-medium.woff") format('woff');
+}
+
+@font-face {
+  font-family: 'BBVAWebBook-Regular';
+  src: url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-book.eot");
+  src: url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-book.eot?#iefix") format("eot"),
+  url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-book.woff") format("woff"),
+  url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-book.ttf") format("truetype"),
+  url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-book.svg#bbvaweb-book") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BBVAWeb-Semibold";
+  src: url("../fonts/BBVA-Web-Fonts-1.004-delivery/bbvaweb-semibold.woff") format('ttf');
+}
+
+@font-face {
+  font-family: 'apiMarketIconFont';
+  src: url('../fonts/BBVA-Web-Fonts-1.004-delivery/api-market-icon-font.eot');
+  src: url('../fonts/BBVA-Web-Fonts-1.004-delivery/api-market-icon-font.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/BBVA-Web-Fonts-1.004-delivery/api-market-icon-font.woff') format('woff'),
+  url('../fonts/BBVA-Web-Fonts-1.004-delivery/api-market-icon-font.ttf') format('truetype'),
+  url('../fonts/BBVA-Web-Fonts-1.004-delivery/api-market-icon-font.svg#api-market-icon-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

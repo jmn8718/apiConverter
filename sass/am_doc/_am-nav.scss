@@ -1,0 +1,180 @@
+#sidebar {
+	width: $sidebar-width;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: $header-size-calc;
+	background-color: white;
+    margin-top: $header-size;
+    font-family: $font-book-regular;
+    z-index: 4;
+
+    a {
+    	width: 100%;
+    }
+    
+    .nav-wrapper-scroll {
+	    height: 100%;
+	    overflow-y: auto;
+	    overflow-x: hidden;
+	    background-color: white;
+	}
+	
+	.nav {
+	
+		border-right: 1px solid $grey-blue;
+		margin-bottom: 0;
+	
+		&.nav-extend {
+			height: 100%;
+		}
+	
+		& > .nav__list {
+			margin-right: 21px;
+			padding-top: 30px;
+			padding-bottom: 30px;
+		}
+	}
+	
+	.nav__list {
+		color: $blue4;
+		list-style: none;
+		-webkit-padding-start: 0px;
+		padding-left: 20px;
+		li {
+			a{
+				color: $blue4;
+			}
+		}
+	}	
+	
+	.nav__title {
+		color: white;
+		font-size: 22px;
+		background-color: $grey-blue-dark;
+		padding: 20px;
+		margin: 0;
+		height: 59px;
+		box-sizing: border-box;
+		border-right: 1px solid $white;
+		text-align: center;
+		position: relative;
+	}
+	
+	.nav__list .nav__list__item {
+		font-size: 16px;
+		text-transform: uppercase;
+		font-weight: 600;
+		line-height: 2.3em;
+		position: relative;
+	}
+	
+	.nav__list.nav__list--sub-list .nav__list__item {
+		line-height: 1.7em;
+	}
+	
+	.nav__list__icon {
+		position: absolute;
+		text-align: right;
+		right: 0;
+		z-index: 1;
+		top: -3px;
+	}
+	
+	.nav__list__link__tooltip {
+		@extend .api_market__tooltip;
+	    opacity: 0;
+	    font-size: 16px;
+	    font-weight: normal;
+	    left: 100px;
+	    padding: 10px;
+	    position: fixed;
+	    max-width: calc(100% - 200px);
+	    z-index: 2;
+	    -moz-transition: opacity 0.1s linear 2s;
+	    -webkit-transition: opacity 0.1s linear 2s;
+	    transition: opacity 0.1s linear 0s;
+	    &:hover {
+	      opacity: 1;
+	      transition-delay: 2s;
+	  }
+	}
+	
+	.nav__list .nav__list__link {
+		display: inline-block;
+		overflow: hidden;
+		font-size: 18px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		vertical-align: top;
+		font-weight: normal;
+		vertical-align: top;
+		&.nav__list__link-sublink {
+			font-size: $font-size-menu-level-2;
+			color: $grey-blue-light;
+			font-family: $font-book-regular;
+		}
+		&.nav__list__link-method {
+			max-width: calc(100% - 40px);
+			font-size: $font-size-menu-level-2;
+			color: $grey-blue-light;
+			font-family: $font-book-regular;
+			&.nav__list__link--active {
+				max-width: calc(100% - 40px);
+			}
+		}
+		&.nav__list__link-method:hover {
+			color: $grey;
+		}
+	}
+	
+	.nav__list .nav__list__link:hover {
+		color: $blue4;
+		cursor: pointer;
+		font-weight: normal;
+		& + .nav__list__link__tooltip {
+	      opacity: 1;
+	      transition-delay: 2s;
+	  }
+	}
+	
+	.nav__list .nav__list__link.nav__list__link--active {
+		color: $grey-blue;
+		max-width: calc(100% - 10px);
+	}
+	
+	.nav__list .nav__list__link.nav__list__link--active:after {
+	
+		content: '';
+		width: 23px;
+		height: 23px;
+		display: block;
+		position: absolute;
+		transform: rotate(45deg);
+		border-left: 1px solid $grey-blue;
+		border-bottom: 1px solid $grey-blue;
+		margin: -14px -13px;
+		top: 20px;
+		right: -20px;
+		background-color: white;
+		box-sizing: border-box;
+		z-index: 2;
+		
+	}
+	
+	.nav__list .nav__list__item .nav__list__item {
+		font-size: 18px;
+		text-transform: initial;
+		font-weight: normal;
+	}
+	
+	.nav__list .nav__list__item .nav__list__item .nav__list__item {
+		font-size: 14px;
+		text-transform: initial;
+		font-weight: normal;
+	}
+	
+	.nav__list--sub-list .nav__list__item {
+		font-family: $font-light-regular;
+	}
+}

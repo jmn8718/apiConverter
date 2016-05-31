@@ -11,13 +11,13 @@ var blueprint2raml = require('../lib/blueprint2raml').blueprint2raml;
 var toRAML = require('raml-object-to-raml');
 
 
-var configWithCustomTemplates = raml2html.getDefaultConfig();
+var configWithDefaultTemplates = raml2html.getDefaultConfig();
 
 router.get('/raml', function(req, res, next) {
     var file = req.query.file;
     var pathfile = path.join(__dirname, '../../',file);
     console.log(pathfile)
-    raml2html.render(pathfile, configWithCustomTemplates).then(function(result) {
+    raml2html.render(pathfile, configWithDefaultTemplates).then(function(result) {
         res.end(result)
     }, function(error) {
         next(error)
@@ -79,7 +79,8 @@ router.get('/blueprint2raml', function(req, res, next) {
                             next(err)
                         else {
                             var str = toRAML(ramlObj);
-                            raml2html.render(str, configWithCustomTemplates).then(function(result) {
+                            var config = raml2html.getDefaultConfig('am_doc.njk', path.join(__dirname, '../templates/raml2html/am_doc'));
+                            raml2html.render(str, config).then(function(result) {
                                 res.end(result)
                             }, function(error) {
                                 next(error)
