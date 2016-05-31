@@ -80,6 +80,7 @@ router.get('/blueprint2raml', function(req, res, next) {
                         else {
                             var str = toRAML(ramlObj);
                             var config = raml2html.getDefaultConfig('am_doc.njk', path.join(__dirname, '../templates/raml2html/am_doc'));
+                            console.log(str)
                             raml2html.render(str, config).then(function(result) {
                                 res.end(result)
                             }, function(error) {

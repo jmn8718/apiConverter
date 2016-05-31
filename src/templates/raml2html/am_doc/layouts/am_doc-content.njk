@@ -1,13 +1,12 @@
-[#ftl]
 <div id="api-doc">
 	<span class="resizer"><i class="resizer__arrow"></i></span>
-	<div class="api__example-console hidden">  
+	{# <div class="api__example-console hidden">
     [@macro_content_action.printConsole/]
-	</div>	 
+	</div>	#}
 	<section class="api-doc__section">
 		<article  id="api-name">
             <section class="api__documentation">
-                <h1 class="api__documentation__title">${model.title?upper_case}</h1>
+                <h1 class="api__documentation__title">{{ title | upper }}</h1>
             </section>
             <section class="api__example">
             </section>
@@ -17,30 +16,30 @@
                 <h1 class="api__documentation__title">API INFORMATION</h3>
                 <table class="api__documentation--table-parameters with_margin-bottom">
                     <tbody>
-                    	[#if model.title?has_content]
+                    	{% if title %}
                         <tr>
                             <td class="with_border-top">Title:</td>
-                            <td class="with_border-top">${model.title}</td>
+                            <td class="with_border-top">{{ title }}</td>
                         </tr>
-                        [/#if]
-                        [#if model.version?has_content]
+                        {% endif %}
+                        {% if version %}
                         <tr>
                             <td>Version:</td>
-                            <td>${model.version?html} </td>
+                            <td>{{ version }} </td>
                         </tr>
-                        [/#if]
-                        [#if model.protocols?has_content]
+                        {% endif %}
+                        {% if protocols %}
                         <tr>
                             <td>Protocols:</td>
-                            <td>[#list model.protocols as protocol]${protocol}[/#list]</td>
+                            <td>{{ protocols }} </td>
                         </tr>
-                        [/#if]
-                        [#if model.uri?has_content]
+                        {% endif %}
+                        {% if baseUri %}
                         <tr>
                             <td>URI:</td>
-                            <td>${model.uri?html}</td>
+                            <td>{{ baseUri }}</td>
                         </tr>
-                        [/#if]
+                        {% endif %}
                     </tbody>
                 </table>
             </section>
@@ -52,14 +51,24 @@
                 <p class="place-holder place-holder--text">Navigate to any service to show its associated examples</p>
             </section>
         </article>
-        
-        [#if model.documentation?has_content]
-        	[#list model.documentation as document]
-        	[@macro_documentation.printDocumentation document/]
-        	[/#list]
-        [/#if]
-        [#list model.resources as resource]
-		[@macro_content_resource.printContentResource resource model.uri/]
-		[/#list]
+
+        {% for chapter in documentation %}
+        	{#[@macro_documentation.printDocumentation document/]#}
+          <article  id="#documentation-{{ chapter.uniqueId }}">
+              <section class="api__documentation">
+              	<h1 class="api__documentation__title">-{{ chapter.title | upper }}</h1>
+                  <div class="highlight-block md-item">
+                     {#{% markdown %}{{ chapter.content }}{% endmarkdown %}#}
+                     {{ chapter.content }}
+                  </div>
+              </section>
+              <section class="api__example api__example--place-holder" id="documentation-${documentation.id}">
+              </section>
+          </article>
+        {% endfor %}
+
+        {% for resource in resources %}
+		    {#[@macro_content_resource.printContentResource resource model.uri/]#}
+        {% endfor %}
 	</section>
 </div>
