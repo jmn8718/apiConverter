@@ -1,3 +1,5 @@
+{% import "../lib/macroSidebarResource.njk" as macroSidebar %}
+
 <div id="sidebar">
     <div id="nav-anchor">&nbsp;</div>
     <div class="nav-wrapper-scroll">
@@ -19,7 +21,9 @@
 					{% endfor %}
 					</ul>
 				</li>
-				
+				{% for resource in resources %}
+				    {{macroSidebar.resourceSidebar(resource)}}
+                {% endfor %}
 				{#[#list model.resources as resource]
 				[@macro_sidebar_resource.printSidebarResource resource/]
 				[/#list]#}

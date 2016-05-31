@@ -53,13 +53,12 @@
         </article>
 
         {% for chapter in documentation %}
-        	{#[@macro_documentation.printDocumentation document/]#}
           <article  id="#documentation-{{ chapter.uniqueId }}">
               <section class="api__documentation">
               	<h1 class="api__documentation__title">-{{ chapter.title | upper }}</h1>
                   <div class="highlight-block md-item">
                      {#{% markdown %}{{ chapter.content }}{% endmarkdown %}#}
-                     {{ chapter.content }}
+                     {{ chapter.content  }}
                   </div>
               </section>
               <section class="api__example api__example--place-holder" id="documentation-${documentation.id}">
