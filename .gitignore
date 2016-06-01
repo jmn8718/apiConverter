@@ -6,3 +6,6 @@ resources/blueprint/*.html
 resources/raml/*.html
 
 app
+
+public/css
+tmp/*

@@ -1,0 +1,30 @@
+{% import "./macroContentAction.njk" as macroAction %}
+
+{% macro contentResource(resource) %}
+    {% if resource.displayName %}
+        {% set displayName = resource.displayName %}
+    {% elif resource.parentUrl %}
+        {% set displayName = resource.parentUrl + resource.relativeUri %}
+    {% else %}
+        {% set displayName = resource.uniqueId %}
+    {% endif %}
+
+<article  id="resource-{{resource.uniqueId}}">
+    <section class="api__documentation">
+            <h1 class="api__documentation__title">{{ displayName | upper }}</h1>
+            {% if resource.description %}
+            <div class="md-item">
+                  {#{% markdown %}{{ resource.description }}{% endmarkdown %}#}
+                  {{ resource.description }}
+            </div>
+            {% endif %}
+    </section>
+    <section class="api__example">
+    </section>
+</article>
+
+    {% for method in resource.methods %}
+    {% set uri = resource.parentUrl + resource.relativeUri %}
+    {{macroAction.contentMethod(method, uri )}}
+    {% endfor %}
+{% endmacro %}

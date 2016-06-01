@@ -23,7 +23,7 @@
                     {% endif %}
                     </strong>
                 </span>
-                <a class="nav__list__link nav__list__link-method" href="#method-{{resource.uniqueId}}-{{ method.method | lower}}" title="{{ resource.parentUrl }}{{ resource.relativeUri }}">{{ resource.parentUrl }}{{ resource.relativeUri }}</a>
+                <a class="nav__list__link nav__list__link-method" href="#method-{{method.uniqueId}}-{{ method.method | lower}}" title="{{ resource.parentUrl }}{{ resource.relativeUri }}">{{ resource.parentUrl }}{{ resource.relativeUri }}</a>
                 <!--<span class="api_market__tooltip nav__list__link__tooltip">{{ resource.parentUrl }}{{ resource.relativeUri }}</span>-->
             </li>
         {% endfor%}

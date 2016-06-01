@@ -1,3 +1,39 @@
+{% macro contentMethod(method, uri='/') %}
+
+<article  id="method-{{method.uniqueId}}-{{ method.method | lower}}">
+    <section class="api__documentation">
+        <div class="api__documentation__title-action row">
+            <div class="col-amkt col-amkt-10">
+                <h1 class="api__documentation__title">
+                    <label id="">{{uri}}</label>
+                </h1>
+
+            </div>
+            <div class="col-amkt col-amkt-2">
+                <span class="api__documentation__icon">
+                    <strong class="api__documentation__http api__documentation__http--{{ method.method | lower }}">
+                        {% if (method.method | lower) == 'delete'%}
+                            del
+                        {% else %}
+                            {{ method.method | lower }}
+                        {% endif %}
+                    </strong>
+                </span>
+            </div>
+        </div>
+        {% if method.description %}
+        <div class="md-item">
+          {#{% markdown %}{{ method.description }}{% endmarkdown %}#}
+          {{ method.description }}
+        </div>
+        {% endif %}
+    </section>
+    <section class="api__example">
+    </section>
+</article>
+
+{% endmacro %}
+{#
 [#ftl]
 [#macro printContentAction action path id baseUri] 
 <article id="action-${id}-${action.type?lower_case}">
@@ -224,9 +260,9 @@
                 <div class="api__documentation__parameters__col">
                     <span class="api__documentation__parameters__text">                    
                 	[#if parameter.example?has_content]
-                        <strong>Example:</strong>${parameter.example}
+                        <strong >Example:</strong><label id="${title[0]?lower_case}_${parameter.name}">${parameter.example}</label>
                     [#elseif parameter.default?has_content]
-                        <strong>Default:</strong>${parameter.default}
+                        <strong>Default:</strong><label id="${title[0]?lower_case}_${parameter.name}">${parameter.default}</label>
                     [#else]
 	                	<span class="api__documentation__parameters__text">
 	                    	-- MISSING EXAMPLE OR DEFAULT --
@@ -299,129 +335,116 @@
 </div>
 
 <!-- header params -->
+<div id="api-console_section_params_container">
 <div class="api-console_section api-console_section_parameters" id="api-console_section--headers"> 
 	<div class="api-console_section_title">
 		<h2>HEADERS</h2>
-		<div class="api-console_section_title-add-btn"></div>
+		<div class="api-console_section_title-add-btn" id="api-console_section-add-headerparam"></div>
 	</div>
-	<div class="api-console_section_input-group">
-		<label class="api-console_section_input-group_label">Security Scheme</label>
-		<input type="text" class="api-console_section_input-group_input" placeholder="application/json">
-	</div>
+	<div id="api-console_section--headers-container" class="api-console__params_container"></div>
 </div>
+
+<div class="api-console_section api-console_section_parameters" id="api-console_section--uriparams"> 
+	<div class="api-console_section_title">
+		URI PARAMETERS
+		<div class="api-console_section_title-add-btn" id="api-console_section-add-uriparam"></div>
+	</div>
+	<div id="api-console_section--uri-params-container" class="api-console__params_container"></div>
+</div>
+	
 
 <!-- query params -->
 <div class="api-console_section api-console_section_parameters" id="api-console_section--queryparams"> 
 	<div class="api-console_section_title">
 		QUERY PARAMETERS
-		<div class="api-console_section_title-add-btn"></div>
+		<div class="api-console_section_title-add-btn" id="api-console_section-add-queryparam"></div>
 	</div>
-	<div class="api-console_section_input-group api-console_section_input-group_double">
-		<span class="api-console_section_input-group_delete-cross">
-			<button class="api-console_section_input-group_delete-cross_button">
-			<span class="hidden">Remove value</span>
-			</button>
-		</span>
-		<input type="text" class="api-console_section_input-group_input api-console_section_input-group-key" placeholder="custom key">
-		<input type="text" class="api-console_section_input-group_input"placeholder="custom value">
-	</div>
-	<div class="api-console_section_input-group api-console_section_input-group_double">
-		<span class="api-console_section_input-group_delete-cross">
-			<button class="api-console_section_input-group_delete-cross_button">
-			<span class="hidden">Remove value</span>
-			</button>
-		</span>
-		<input type="text" class="api-console_section_input-group_input api-console_section_input-group-key" placeholder="custom key">
-		<input type="text" class="api-console_section_input-group_input"placeholder="custom value">
-	</div>
+	<div id="api-console_section--query-params-container" class="api-console__params_container"></div>
+</div>
 </div>
 
-
-<div class="api-console_section api-console_section_parameters"> 
-	<h1 class="api-console_section_title">POST PARAMETERS</h1>
-	<div class="api-console_section_input-group">
-		<label class="api-console_section_input-group_label">Security Scheme</label>
-		<span class="api-console_section_input-group_reset-arrow">
-			<button class="api-console_section_input-group_reset-arrow_button">
-			<span class="hidden">Reset value</span>
-			</button>
-		</span>
-		<input type="text" class="api-console_section_input-group_input" placeholder="application/json">
-	</div>
-</div>
+<!-- <div class="api-console_section api-console_section_parameters">  -->
+<!-- 	<h1 class="api-console_section_title">POST PARAMETERS</h1> -->
+<!-- 	<div class="api-console_section_input-group"> -->
+<!-- 		<label class="api-console_section_input-group_label">Security Scheme</label> -->
+<!-- 		<span class="api-console_section_input-group_reset-arrow"> -->
+<!-- 			<button class="api-console_section_input-group_reset-arrow_button"> -->
+<!-- 			<span class="hidden">Reset value</span> -->
+<!-- 			</button> -->
+<!-- 		</span> -->
+<!-- 		<input type="text" class="api-console_section_input-group_input" placeholder="application/json"> -->
+<!-- 	</div> -->
+<!-- </div> -->
 
 <div class="api-console_section api-console_section_buttons">
-	<div class="api-console_section_buttons_button api-console_section_buttons_button-clear">
+	<div class="api-console_section_buttons_button api-console_section_buttons_button-clear" id="api-console_section_action-clear">
 		Clear
 	</div>
-	<div class="api-console_section_buttons_button api-console_section_buttons_button-reset">
+	<div class="api-console_section_buttons_button api-console_section_buttons_button-reset" id="api-console_section_action-reset">
 		Reset
 	</div>
-	<div class="api-console_section_buttons_button api-console_section_buttons_button-action">
-		GET
+	<div class="api-console_section_buttons_button api-console_section_buttons_button-action" id="api-console_section_action-submit">
+		Send Action
 	</div>
 </div>
 
-<div class="api-console_section api-console_section_call-action">
-	<h1 class="api-console_section_call-action_title">
-		REQUEST
-	</h1>
-	<div class="api-console_section_call-action_block">
-		<h2 class="api-console_section_call-action_block_title">
-		REQUEST URL
-		</h2>
-		<p class="api-console_section_call-action_block_text">
-		http://apis.bbva.com/identity/v2/me?app_id=app.bbva.ramlConsole
-		</p>
+<div class="hidden" id="api-console_section-result">
+	<div class="api-console_section api-console_section_call-action">
+		<h1 class="api-console_section_call-action_title">
+			REQUEST
+		</h1>
+		<div class="api-console_section_call-action_block">
+			<h2 class="api-console_section_call-action_block_title">
+			REQUEST URL
+			</h2>
+			<p class="api-console_section_call-action_block_text" id="api-console_request-url">
+<!-- 			http://apis.bbva.com/identity/v2/me?app_id=app.bbva.ramlConsole -->
+			</p>
+		</div>
+		<div class="api-console_section_call-action_block" >
+			<h2 class="api-console_section_call-action_block_title">
+			Headers
+			</h2>
+			<div id="api-console_request-header"></div>
+		</div>
 	</div>
-	<div class="api-console_section_call-action_block">
-		<h2 class="api-console_section_call-action_block_title">
-		Headers
-		</h2>
-		<p class="api-console_section_call-action_block_text_key">
-		Authorization:
-		</p>
-		<p class="api-console_section_call-action_block_text">
-		Tsec exJsadkjsadfdskvnkjfdsngvckfjdsnvlsfdlnvcknfdsvckncksandvcmcxsaj
-		</p>
-	</div>
-</div>
-<div class="api-console_section api-console_section_call-action">
-	<h1 class="api-console_section_call-action_title">
-		RESPONSE
-	</h1>
-	<div class="api-console_section_call-action_block">
-		<h2 class="api-console_section_call-action_block_title">
-		Status
-		</h2>
-		<p class="api-console_section_call-action_block_text">
-		403
-		</p>
-	</div>	
-	<div class="api-console_section_call-action_block">
-		<h2 class="api-console_section_call-action_block_title">
-		Headers
-		</h2>
-		<p class="api-console_section_call-action_block_text_key">
-		cache-control:
-		</p>
-		<p class="api-console_section_call-action_block_text">
-		no store
-		</p>
-		<p class="api-console_section_call-action_block_text_key">
-		content-type:
-		</p>
-		<p class="api-console_section_call-action_block_text">
-		application/json
-		</p>
-	</div>
-	<div class="api-console_section_call-action_block">
-		<h2 class="api-console_section_call-action_block_title">
-		Body
-		</h2>
-		<div id="body_response-wrapper" class="api-console_section_call-action_response-wrapper">
-			<div id="body_response-container" class="api-console_section_call-action_response-container">
-				<pre id="pre_code_container--result" class="example-code_container-console line-numbers"></pre>
+	<div class="api-console_section api-console_section_call-action">
+		<h1 class="api-console_section_call-action_title">
+			RESPONSE
+		</h1>
+		<div class="api-console_section_call-action_block">
+			<h2 class="api-console_section_call-action_block_title">
+			Status
+			</h2>
+			<p class="api-console_section_call-action_block_text">
+			403
+			</p>
+		</div>	
+		<div class="api-console_section_call-action_block">
+			<h2 class="api-console_section_call-action_block_title">
+			Headers
+			</h2>
+			<p class="api-console_section_call-action_block_text_key">
+			cache-control:
+			</p>
+			<p class="api-console_section_call-action_block_text">
+			no store
+			</p>
+			<p class="api-console_section_call-action_block_text_key">
+			content-type:
+			</p>
+			<p class="api-console_section_call-action_block_text">
+			application/json
+			</p>
+		</div>
+		<div class="api-console_section_call-action_block">
+			<h2 class="api-console_section_call-action_block_title">
+			Body
+			</h2>
+			<div id="body_response-wrapper" class="api-console_section_call-action_response-wrapper">
+				<div id="body_response-container" class="api-console_section_call-action_response-container">
+					<pre id="pre_code_container--result" class="example-code_container-console line-numbers"></pre>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -438,3 +461,4 @@
 	${ captured?replace("^\\n|^\\r|\\n$|\\r$", "", "rm") }
 [/#macro]
 
+#}

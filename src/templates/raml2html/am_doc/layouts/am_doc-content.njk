@@ -1,3 +1,5 @@
+{% import "../lib/macroContentResource.njk" as macroResource %}
+
 <div id="api-doc">
 	<span class="resizer"><i class="resizer__arrow"></i></span>
 	{# <div class="api__example-console hidden">
@@ -61,12 +63,13 @@
                      {{ chapter.content  }}
                   </div>
               </section>
-              <section class="api__example api__example--place-holder" id="documentation-${documentation.id}">
+              <section class="api__example api__example--place-holder">
               </section>
           </article>
         {% endfor %}
 
         {% for resource in resources %}
+            {{ macroResource.contentResource(resource) }}
 		    {#[@macro_content_resource.printContentResource resource model.uri/]#}
         {% endfor %}
 	</section>
